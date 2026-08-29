@@ -3,7 +3,12 @@
 Static mirror of the deployed P6 Motorwerks site (celadon-starburst-f0a9f6.netlify.app),
 pulled down from the live Netlify deploy since no source repo was previously linked.
 
-`index.html` + `assets/` are the exact built output (Vite/TanStack Start + Tailwind).
+The site is three static pages: `index.html` (Home), `services/index.html` (Services),
+and `contact/index.html` (Contact, plus `contact/thank-you/` after form submit). They
+share the stylesheet in `assets/` and the vanilla nav script `assets/site.js`.
+
+`assets/index-D637ba7w.css` is built output (Vite/TanStack Start + Tailwind); the
+home page's original React bundle was removed since the prerendered HTML is complete.
 `fonts/` holds the LeoTrace / LeoTrace Outline type kit and its `@font-face` stylesheet
 (`fonts/leotrace.css`), linked from `index.html` but not yet applied to any element —
 swap it in via the `--font-display` / `--font-label` / `--font-body` custom properties
