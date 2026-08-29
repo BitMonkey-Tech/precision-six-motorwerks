@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.file_path // \"\"' | { read -r f; case \"$f\" in *assets/index-*.js|*assets/index-*.css) echo \"{\\\"systemMessage\\\":\\\"WARNING: assets/index-* files are minified, content-hashed build artifacts and cannot be regenerated in this repo. See CLAUDE.md before editing.\\\"}\";; esac; } 2>/dev/null || true"
+          }
+        ]
+      }
+    ]
+  }
+}
