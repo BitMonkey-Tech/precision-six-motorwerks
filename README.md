@@ -37,6 +37,26 @@ here — edit them directly and sparingly. Hand-authored HTML in `index.html` /
 
 See `CLAUDE.md` for the full set of conventions.
 
+## SEO / crawling
+
+`robots.txt` and `sitemap.xml` (repo root) both assume the production domain is
+`precisionsixmotorwerks.com` — update both if that ever changes. Each page carries
+a canonical link, Open Graph/Twitter meta tags, and `AutoRepair` + `FAQPage`
+JSON-LD (schema.org structured data) with the shop's name/address/phone/hours;
+`contact/thank-you/` is marked `noindex` since it's a form-confirmation page with
+no content worth ranking.
+
+The `sameAs` array in each `AutoRepair` JSON-LD block is empty — add the Google
+Business Profile URL there (and any Facebook/Instagram/Yelp listing URLs) once
+you have it, in `index.html`, `services/index.html`, and `contact/index.html`.
+This is what actually links the site to the Business Profile in Google's eyes;
+consistent name/address/phone across the site and the listing itself matters
+more for local ranking than any single technical tweak here.
+
+Once live: verify the domain in [Google Search Console](https://search.google.com/search-console)
+and submit `sitemap.xml` there — that's what gets the site crawled and indexed,
+separately from the Business Profile.
+
 ## Deploy
 
 ```bash
