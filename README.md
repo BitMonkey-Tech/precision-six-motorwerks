@@ -65,3 +65,24 @@ netlify deploy --prod
 
 `netlify.toml` publishes the project root (`.`) with no build step.
 Deployment is moving to Dokploy; this section will be updated when that lands.
+
+### Redirecting p6motorwerks.com
+
+`p6motorwerks.com` (registered via Namecheap) should forward to `precisionsixmotorwerks.com`.
+`netlify.toml` already has the redirect rule, but it's inert until the domain is
+wired up — that part has to be done by hand in each provider's dashboard (it needs
+account logins Claude Code doesn't have and shouldn't be given):
+
+1. **Netlify** — Site settings → Domain management → Add domain alias → `p6motorwerks.com`
+   (and `www.p6motorwerks.com`). Netlify will show the exact DNS records it needs.
+2. **Namecheap** — Domain List → `p6motorwerks.com` → Manage → Advanced DNS → add
+   the records Netlify gave you (typically an `A`/`ALIAS` record for the apex and a
+   `CNAME` for `www`). Do **not** use Namecheap's own "Domain Forwarding" feature
+   instead of this — it doesn't provision a valid HTTPS certificate, so visitors get
+   a security warning before the redirect ever fires.
+3. Wait for DNS to propagate (usually minutes, can take longer) and for Netlify to
+   auto-issue an SSL certificate for the new domain. Once both domains resolve,
+   `p6motorwerks.com` will 301-redirect to `precisionsixmotorwerks.com` automatically.
+
+If deployment has already moved to Dokploy by the time this is done, the redirect
+needs to be a rule on that reverse proxy instead — the `netlify.toml` rule won't apply.
