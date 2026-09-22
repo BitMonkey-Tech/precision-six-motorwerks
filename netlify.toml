@@ -1,2 +1,17 @@
 [build]
   publish = "."
+
+# p6motorwerks.com is a second domain that should just forward to the real
+# site. This rule only takes effect once p6motorwerks.com is added as a
+# domain alias on this Netlify site (see README) — until then it's inert.
+[[redirects]]
+  from = "https://p6motorwerks.com/*"
+  to = "https://precisionsixmotorwerks.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://www.p6motorwerks.com/*"
+  to = "https://precisionsixmotorwerks.com/:splat"
+  status = 301
+  force = true
