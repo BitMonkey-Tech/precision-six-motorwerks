@@ -13,6 +13,13 @@ A **static, pre-built mirror** of the P6 Motorwerks marketing site (independent 
 - Styling is **Tailwind utility classes**, often with arbitrary values (e.g. `bg-[#0c0c0d]`, `tracking-[0.5em]`). The contact form is the exception: its styles live in a page-scoped `<style>` block in `contact/index.html`.
 - Routes are directory-based (`/contact` → `contact/index.html`) and links use absolute paths, so pages only work when served from the web root.
 
+## Copy style
+
+- **No em dashes, en dashes, or hyphens used as sentence punctuation anywhere in visible site copy** (headings, body text, meta descriptions, structured data text). Use a comma or a period instead, restructuring the sentence if needed.
+- Compound words that would normally take a hyphen (e.g. "factory-trained", "air-cooled", "check-engine light") are written as open compounds instead — drop the hyphen, keep it as two words (e.g. "factory trained", "air cooled", "check engine light").
+- Exceptions: genuine proper nouns that are hyphenated as part of their real name (e.g. the *Magnuson-Moss* Warranty Act) — don't alter those. Hours/day ranges (e.g. "Mon–Fri", "9:00 AM–5:00 PM") are also fine with an en dash — the user has explicitly allowed this one case. Technical strings (URLs, file paths, CSS class names, phone `tel:` links, HTML/CSS attribute values like `device-width`) are never in scope — this rule is about prose only.
+- The visible phone number is written with a space instead of a hyphen: `(239) 208 3140`.
+
 ## Brand tokens
 
 - Palette: backgrounds `#0c0c0d` / `#131313` / `#161616`, text `#ece9e4`, muted `#a29e97`, accent red `#c23b2c` (hover `#a6301f` / `#e0523f`).
