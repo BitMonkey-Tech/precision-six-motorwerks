@@ -36,12 +36,12 @@ A **static, pre-built mirror** of the P6 Motorwerks marketing site (independent 
 python3 -m http.server 4173
 ```
 
-Run from the repo root (or use `/preview`). The contact form uses **Netlify Forms** and only submits when deployed — it will not work in local preview.
+Run from the repo root (or use `/preview`). The contact form (`form.js-form` in `contact/index.html`) is submitted by `assets/forms.js`, which POSTs to BitMonkey's **postbox** mail service (`https://postbox.bitmonkeytech.com`, form ID `p6motorwerks`). It does not use Netlify Forms.
 
 ## Git
 
-Work on a feature branch off `main` and open a PR; do not commit directly to `main`.
+Work on `dev` (or a feature branch), push it, and open a PR into `main`; do not commit directly to `main`. Merge the PR only when the user asks.
 
 ## Deployment
 
-In flux (currently Netlify, moving to Dokploy). Do not run deploy commands unless asked; this section will be updated later.
+The site is **not hosted on Netlify** any more; it has moved to Dokploy. `netlify.toml` is a leftover and has no effect. Don't assume what merging to `main` triggers, and do not run deploy commands unless asked.
