@@ -1,4 +1,21 @@
 (function(){
+  // Highlights the in-page nav link (e.g. "#about") that matches href.
+  function setActiveHash(href){
+    document.querySelectorAll('[data-hash-nav]').forEach(function(l){
+      l.classList.toggle('is-active', l.getAttribute('href') === href);
+    });
+  }
+
+  // Arriving from another page via "/#about" never fires a click here, so
+  // sync the highlight with the URL on load, and on back/forward navigation.
+  function syncFromUrl(){
+    if (location.hash && document.querySelector('[data-hash-nav][href="' + location.hash + '"]')) {
+      setActiveHash(location.hash);
+    }
+  }
+  syncFromUrl();
+  window.addEventListener('hashchange', syncFromUrl);
+
   function closeMenu(){
     var panel = document.querySelector('[data-mobile-nav]');
     var toggle = document.querySelector('[data-menu-toggle]');
@@ -28,12 +45,7 @@
     }
 
     var navLink = e.target.closest && e.target.closest('[data-hash-nav]');
-    if (navLink) {
-      var href = navLink.getAttribute('href');
-      document.querySelectorAll('[data-hash-nav]').forEach(function(l){
-        l.classList.toggle('is-active', l.getAttribute('href') === href);
-      });
-    }
+    if (navLink) setActiveHash(navLink.getAttribute('href'));
 
     var panelForClose = document.querySelector('[data-mobile-nav]');
     if (panelForClose && panelForClose.classList.contains('is-open') && e.target.closest('a')) {
