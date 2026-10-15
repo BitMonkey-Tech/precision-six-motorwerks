@@ -3,8 +3,8 @@
   // feed: someone with the Instagram login connects the account on Behold,
   // which keeps the Instagram access token private and hands us a public
   // feed ID. Put that ID in the section's data-ig-feed attribute in
-  // index.html. Until it is set, or if the feed fails to load, the section
-  // just shows its "Follow on Instagram" button.
+  // index.html. The section stays hidden (CSS) until posts load, so if the
+  // ID is unset or the feed fails, nothing shows.
   var root = document.getElementById('instagram');
   if (!root) return;
   var feed = root.getAttribute('data-ig-feed');
@@ -52,7 +52,7 @@
     return a;
   }
 
-  // Grey out an arrow when the row is already scrolled to that end.
+  // Hide an arrow (via :disabled in CSS) when the row is already at that end.
   function updateArrows(){
     var max = track.scrollWidth - track.clientWidth - 2;
     prev.disabled = track.scrollLeft <= 2;
@@ -80,5 +80,5 @@
       window.addEventListener('resize', updateArrows);
       updateArrows();
     })
-    .catch(function(){ /* leave the Follow button as the fallback */ });
+    .catch(function(){ /* section stays hidden */ });
 })();
