@@ -116,14 +116,17 @@
   <!-- Retail partners banner: brands P6 is a certified retailer for. To add a
        brand, drop its logo in /images/partners/ and copy one <img> line below.
        The flex row wraps onto extra lines on narrow (phone) screens.
-       Red background with white text; the red label became white so it stays readable. -->
-  <section class="bg-[#c23b2c]" aria-labelledby="partners-heading">
-    <div class="mx-auto max-w-[1400px] px-6 md:px-10" style="padding-top:64px;padding-bottom:64px;text-align:center">
-      <span class="font-label text-sm tracking-[0.22em] text-white">RETAIL PARTNERS</span>
+       Dark charcoal band with a soft red glow: the radial-gradient is a circle of
+       translucent brand red that fades to nothing, layered over the #161616 base.
+       Thin red lines top and bottom frame it, and drop-shadow on the logo adds a
+       faint red halo around the badge. -->
+  <section style="background:radial-gradient(ellipse 60% 90% at 50% 65%,rgba(194,59,44,0.28),rgba(194,59,44,0) 70%),#161616;border-top:1px solid rgba(194,59,44,0.55);border-bottom:1px solid rgba(194,59,44,0.55)" aria-labelledby="partners-heading">
+    <div class="mx-auto max-w-[1400px] px-6 md:px-10" style="padding-top:72px;padding-bottom:72px;text-align:center">
+      <span class="font-label text-sm tracking-[0.22em]" style="color:#e0523f">RETAIL PARTNERS</span>
       <h2 id="partners-heading" class="mt-4 font-display text-2xl text-white sm:text-3xl">Proud Certified Retailer</h2>
       <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:48px;margin-top:40px">
         <!-- target="_blank" opens the partner site in a new tab; rel="noopener" stops that tab from controlling this page -->
-        <a href="https://giacusa.com/" target="_blank" rel="noopener" aria-label="GIAC (opens in a new tab)"><img src="/images/partners/giac.png" alt="GIAC" width="100" height="52" loading="lazy" style="height:52px;width:auto;display:block" /></a>
+        <a href="https://giacusa.com/" target="_blank" rel="noopener" aria-label="GIAC (opens in a new tab)"><img src="/images/partners/giac.png" alt="GIAC" width="100" height="52" loading="lazy" style="height:68px;width:auto;display:block;filter:drop-shadow(0 0 18px rgba(194,59,44,0.5))" /></a>
       </div>
     </div>
   </section>
