@@ -1,10 +1,10 @@
 (function(){
-  // Homepage Instagram carousel. Posts come from a Behold (behold.so) JSON
-  // feed: someone with the Instagram login connects the account on Behold,
-  // which keeps the Instagram access token private and hands us a public
-  // feed ID. Put that ID in the section's data-ig-feed attribute in
-  // index.html. The section stays hidden (CSS) until posts load, so if the
-  // ID is unset or the feed fails, nothing shows.
+  // Homepage Instagram carousel. Posts come from BitMonkey's instafeed
+  // service (https://instafeed.bitmonkeytech.com), which keeps the Instagram
+  // access token private on the server and returns the latest posts as JSON.
+  // The section's data-ig-feed attribute in index.html is this site's feed ID
+  // in instafeed's feeds.json. The section stays hidden (CSS) until posts
+  // load, so if the ID is unset or the feed fails, nothing shows.
   var root = document.getElementById('instagram');
   if (!root) return;
   var feed = root.getAttribute('data-ig-feed');
@@ -15,21 +15,13 @@
   var next = root.querySelector('.ig-next');
   var MAX_POSTS = 12;
 
-  // Accept a bare Behold feed ID, or a full URL (handy for local testing).
-  var url = feed.indexOf('/') === -1 ? 'https://feeds.behold.so/' + encodeURIComponent(feed) : feed;
-
-  // Pick a reasonably small image: Behold's resized "medium" (max 700px) if
-  // present, else the raw image. For videos, mediaUrl is the video itself,
-  // so fall back to its thumbnail instead.
-  function imageFor(post){
-    var s = post.sizes;
-    if (s && s.medium && s.medium.mediaUrl) return s.medium.mediaUrl;
-    if (post.mediaType === 'VIDEO') return post.thumbnailUrl;
-    return post.mediaUrl;
-  }
+  // Accept a bare feed ID, or a full URL (handy for local testing).
+  var url = feed.indexOf('/') === -1 ? 'https://instafeed.bitmonkeytech.com/ig/' + encodeURIComponent(feed) : feed;
 
   function buildCard(post){
-    var src = imageFor(post);
+    // instafeed already picked the image: a reel's thumbnail, an album's
+    // first slide, or the photo itself.
+    var src = post.imageUrl;
     if (!src || !post.permalink) return null;
     var a = document.createElement('a');
     a.className = 'ig-card';
@@ -40,7 +32,7 @@
     img.src = src;
     img.loading = 'lazy';
     // Alt text: the caption (trimmed) describes the photo for screen readers.
-    var cap = (post.prunedCaption || post.caption || '').trim();
+    var cap = (post.caption || '').trim();
     img.alt = cap ? cap.slice(0, 140) : 'Instagram post from Precision Six Motorwerks';
     a.appendChild(img);
     if (post.mediaType === 'VIDEO') {
