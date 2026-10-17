@@ -8,21 +8,26 @@
    causing a horizontal scrollbar, while still letting it hang down vertically. */
 .site-header{background:#c23b2c;border-bottom:0;backdrop-filter:none;overflow-x:clip}
 
+/* 5px taller than the original bar: 18.5px top and bottom padding instead of 16px. */
+.site-header > div:first-child{padding-top:18.5px;padding-bottom:18.5px}
+
 /* Logo wrapper: stretched to full bar height, with room on the right for the slant. */
 .site-header .site-logo{position:relative;z-index:0;padding-right:56px}
 
 /* The black panel is drawn as a pseudo element (a decorative box CSS adds
    behind the logo, no extra HTML needed). left:-100vw pushes it to the left edge
    of the screen however wide the window is; clip-path cuts the right side on
-   a diagonal. top/bottom of -16px cover the container's vertical padding. */
-.site-header .site-logo::before{content:"";position:absolute;z-index:-1;top:-16px;bottom:-16px;left:-100vw;right:0;background:#0c0c0d;clip-path:polygon(0 0,100% 0,calc(100% - 44px) 100%,0 100%)}
+   a diagonal. top/bottom of -18.5px cover the container's vertical padding. */
+.site-header .site-logo::before{content:"";position:absolute;z-index:-1;top:-18.5px;bottom:-18.5px;left:-100vw;right:0;background:#0c0c0d;clip-path:polygon(0 0,100% 0,calc(100% - 44px) 100%,0 100%)}
 
 /* Menu links: white, bolder and bigger, with tighter letter spacing. */
 .site-header .nav-link-desktop{color:#fff;font-weight:600;font-size:16px;letter-spacing:.08em;border-bottom:0}
 .site-header .nav-link-desktop:hover,.site-header .nav-link-desktop.is-active{color:#0c0c0d;border-bottom:0}
 
 /* Schedule button: white outline on the red bar, fills white on hover. */
-.site-header .desktop-cta{background:transparent;border:2px solid #fff;padding:12px 28px;font-weight:600;font-size:15px;letter-spacing:.12em}
+/* white-space:nowrap keeps the label on one line; at narrow desktop widths it
+   used to wrap to two lines, which made the whole bar taller. */
+.site-header .desktop-cta{white-space:nowrap;background:transparent;border:2px solid #fff;padding:12px 28px;font-weight:600;font-size:15px;letter-spacing:.12em}
 .site-header .desktop-cta:hover{background:#fff;color:#c23b2c}
 
 /* Desktop only: the logo panel hangs a little below the red bar.
@@ -32,5 +37,5 @@
   /* Bigger logo. The img sets height:40px in its inline style attribute, and
      inline styles beat stylesheets unless the rule uses !important. */
   .site-header .site-logo img{height:52px!important}
-  .site-header .site-logo::before{bottom:-36px;clip-path:polygon(0 0,100% 0,calc(100% - 64px) 100%,0 100%)}
+  .site-header .site-logo::before{bottom:-38.5px;clip-path:polygon(0 0,100% 0,calc(100% - 64px) 100%,0 100%)}
 }
