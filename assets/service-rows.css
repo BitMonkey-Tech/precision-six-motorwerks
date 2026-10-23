@@ -1,0 +1,47 @@
+/* Services page only: each service is a full width row with its text on one
+   side and a shop photo on the other, flipping sides every row (a "zigzag").
+   The home page keeps the 2x2 card grid from /assets/service-cards.css.
+
+   On phones each row is a single column: text first, then the photo below.
+   From 768px up the row becomes a two column grid, and every even row swaps
+   the columns with `order` so the photo lands on the left. The HTML keeps the
+   text first in every row, so screen readers and phones always get the
+   heading before the picture. */
+
+.service-rows{display:flex;flex-direction:column;gap:72px}
+.service-row{display:grid;grid-template-columns:1fr;gap:32px;align-items:center}
+@media (min-width:768px){
+  .service-rows{gap:112px}
+  .service-row{grid-template-columns:1fr 1fr;gap:64px}
+  .service-row:nth-child(even) .service-row-media{order:-1}
+}
+
+/* Text side. `position:relative` lets the red sweep line from
+   service-cards.css (the [data-reveal-card]::before bar) sit on its top edge. */
+.service-row-text{position:relative;padding-top:24px}
+.service-row-text>p{max-width:34rem}
+
+/* Text sizes set here because the prebuilt Tailwind CSS only contains the
+   size classes the upstream app used, and this layout wants larger type than
+   the cards: 30px titles and 16px body on phones, 36px and 17px from 640px. */
+.service-row-text>h3{font-size:1.875rem;line-height:1.15}
+.service-row-text>p{font-size:1rem}
+@media (min-width:640px){.service-row-text>h3{font-size:2.25rem}.service-row-text>p{font-size:1.0625rem}}
+
+/* Schedule button under each description. It's a direct child of the
+   [data-reveal-card] text block, so it rises in with the number, title and
+   text; --item-delay makes it land last, a beat after the paragraph. */
+.service-row-text>.service-row-cta{margin-top:32px;--item-delay:.3s}
+
+/* Photo side: a fixed 4:3 frame so every row lines up, with object-fit:cover
+   cropping each photo to fill it instead of stretching. The thin border and
+   dark padding echo the framed photos in the reference layout. */
+.service-row-media{position:relative;aspect-ratio:4/3;overflow:hidden;border-radius:2px;border:1px solid rgba(255,255,255,0.1);background:#161616;padding:8px}
+.service-row-media img{display:block;width:100%;height:100%;object-fit:cover;border-radius:1px}
+
+/* Photo fades and rises in when /assets/site.js adds `is-visible` (it watches
+   every [data-reveal] element), a beat after the text so the pair staggers. */
+.service-row-media{opacity:0;transform:translateY(24px)}
+.service-row-media.is-visible{opacity:1;transform:none;transition:opacity .9s cubic-bezier(.16,.8,.24,1) .15s,transform .9s cubic-bezier(.16,.8,.24,1) .15s}
+
+@media (prefers-reduced-motion:reduce){.service-row-media{opacity:1;transform:none}}
