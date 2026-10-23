@@ -8,7 +8,7 @@
   // Paste the Apps Script "Web app URL" (ends in /exec) here. Until it is set,
   // the popup stays hidden for visitors; add #join to the URL to preview it.
   const SHEET_URL =
-    "https://script.google.com/macros/s/AKfycbxiW1BqRQ_7Re2EliDYm2Y6S1EJqhLBkgeoFuzDKD98ASXKDD3Spe3lHpDtTGK3onA/exec";
+    "https://script.google.com/macros/s/AKfycbwvNaYHF3QHWHj-iwsjxVPB8JNp3ex3_ilvKI3b2laVKfSvyCRK0HMtnMtkiWwimWjE/exec";
 
   const OPEN_DELAY_MS = 6000;
   const SNOOZE_DAYS = 14; // after closing, wait this long before showing again
