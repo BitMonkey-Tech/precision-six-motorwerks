@@ -33,3 +33,19 @@
 
 /* Visitors who ask their OS for less motion just see the cards, no animation. */
 @media (prefers-reduced-motion:reduce){[data-reveal-card]>*,[data-reveal-card].is-visible>*{opacity:1;animation:none}[data-reveal-card]::before{display:none}}
+
+/* Home service list. Open cards instead of boxed tiles: a red rule on top,
+   a red line icon, then a spaced out caps title. Scoped to .svc-list so the
+   services page keeps its boxed cards. */
+.svc-list{column-gap:80px;row-gap:56px}
+.svc-list [data-reveal-card]{padding-top:40px}
+.svc-list svg{display:block;width:32px;height:32px;color:#c23b2c}
+.svc-list h3{margin-top:28px;letter-spacing:.2em;text-transform:uppercase}
+.svc-list p{margin-top:12px;max-width:34rem}
+/* Slightly larger body text from 640px up, so it holds its own under the big titles. */
+@media (min-width:640px){.svc-list p{font-size:1rem;line-height:1.7}}
+/* The red line sweeps in as on the other cards, but stays put afterwards
+   as the card's top rule instead of fading out. */
+.svc-list [data-reveal-card].is-visible::before{animation-name:svc-rule}
+@keyframes svc-rule{from{opacity:1;transform:scaleX(0)}to{opacity:1;transform:scaleX(1)}}
+@media (prefers-reduced-motion:reduce){.svc-list [data-reveal-card]::before{display:block;opacity:1;transform:none}}
