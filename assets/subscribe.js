@@ -1,4 +1,4 @@
-// "Join the P6 Community" popup on the contact page.
+// "Join the P6 Community" popup on the homepage.
 //
 // Opens the <dialog id="subscribe-popup"> a few seconds after the page loads
 // and sends signups to a Google Apps Script web app, which appends them to the
@@ -10,7 +10,7 @@
   const SHEET_URL =
     "https://script.google.com/macros/s/AKfycbwvNaYHF3QHWHj-iwsjxVPB8JNp3ex3_ilvKI3b2laVKfSvyCRK0HMtnMtkiWwimWjE/exec";
 
-  const OPEN_DELAY_MS = 6000;
+  const OPEN_DELAY_MS = 2000;
   const SNOOZE_DAYS = 14; // after closing, wait this long before showing again
   const STORAGE_KEY = "p6-subscribe";
 
@@ -44,8 +44,8 @@
     dialog.showModal();
   } else if (SHEET_URL && !remembered()) {
     setTimeout(() => {
-      // Don't interrupt someone who is already typing in the quote form.
-      if (!document.querySelector(".contact-form :focus")) dialog.showModal();
+      // Don't interrupt someone who is already typing in a form on the page.
+      if (!document.querySelector("form :focus")) dialog.showModal();
     }, OPEN_DELAY_MS);
   }
 

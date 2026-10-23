@@ -1,6 +1,6 @@
 /**
  * P6 Subscribers: receives "Join the P6 Community" popup signups from the
- * contact page and appends each one as a row in the "P6 Subscribers" sheet.
+ * homepage and appends each one as a row in the "P6 Subscribers" sheet.
  *
  * This file is NOT run by the website. It is pasted into Google Apps Script
  * (Google's free server side JavaScript, attached to a Google Sheet).

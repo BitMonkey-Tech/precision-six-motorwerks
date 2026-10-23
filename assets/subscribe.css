@@ -1,4 +1,4 @@
-/* "Join the P6 Community" popup (contact page). Behaviour is in subscribe.js. */
+/* "Join the P6 Community" popup (homepage). Behaviour is in subscribe.js. */
 
 /* <dialog> is the browser's built in modal box. showModal() puts it on top of
    the page, traps keyboard focus inside it, and closes it on Esc.
@@ -27,8 +27,12 @@
 .sub-form select:invalid{color:#6b6f78}
 .sub-form select{appearance:none;background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="8" viewBox="0 0 12 8"><path d="M1 1l5 5 5-5" stroke="%23a29e97" stroke-width="1.5" fill="none"/></svg>');background-repeat:no-repeat;background-position:right 16px center}
 .sub-form option{color:#ece9e4;background:#131313}
-.sub-form .submit-btn{align-self:stretch;margin-top:6px}
-.sub-form .form-status{margin-top:0;text-align:center}
+/* Button and status line, matching the contact page's quote form. */
+.sub-form .submit-btn{background:#c23b2c;color:#fff;border:none;border-radius:2px;padding:14px 32px;margin-top:6px;font-family:"Oswald",sans-serif;font-weight:600;font-size:14px;letter-spacing:.22em;text-transform:uppercase;cursor:pointer;transition:background-color .15s ease}
+.sub-form .submit-btn:hover{background:#a6301f}
+.sub-form .submit-btn:disabled{opacity:.6;cursor:default}
+.sub-form .form-status{font-family:"Archivo",sans-serif;font-size:14px;line-height:1.5;color:#a29e97;min-height:1.2em;text-align:center}
+.sub-form .form-status.error{color:#e0523f}
 .sub-thanks{text-align:center;padding:24px 0}
 .sub-thanks p{margin-top:10px;color:#a29e97;font-size:15px}
 
