@@ -1,0 +1,66 @@
+/* About page styles. /assets/site.js adds `is-visible` to each [data-reveal]
+   and [data-reveal-bio] element the first time it scrolls into view, which
+   starts the transitions and keyframe animations below. */
+
+/* Bigger body copy than the Tailwind text-sm, matching the home page's About block. */
+.about-page p{font-size:1rem}
+
+/* Heading, tagline and intro: fade and rise into place, a beat apart.
+   Same rules the home page keeps in its inline <style>. */
+[data-reveal]{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.16,.8,.24,1),transform .7s cubic-bezier(.16,.8,.24,1)}
+[data-reveal].is-visible{opacity:1;transform:translateY(0)}
+[data-reveal="1"]{transition-delay:.1s}
+[data-reveal="2"]{transition-delay:.2s}
+
+/* Bios. Each one plays in four steps once it scrolls into view:
+   1. a red line draws down its left edge,
+   2. the role label fades in while its letter spacing tightens,
+   3. the name is wiped in from left to right,
+   4. the paragraphs rise into place one after another.
+   --bio-delay pushes the whole sequence later (used to stagger the two bios). */
+[data-reveal-bio]{position:relative;padding-left:24px}
+
+/* Space between the two bios. Set here because the compiled Tailwind CSS only
+   contains the gap classes the original app used, and gap-12/gap-16 aren't among them. */
+.bios{gap:48px}
+@media (min-width:768px){.bios{gap:64px}}
+
+/* Step 1. The line is a pseudo element (a decorative box CSS draws, no extra
+   HTML); scaleY(0) squashes it to nothing and the animation grows it from the top. */
+[data-reveal-bio]::before{content:"";position:absolute;top:0;bottom:0;left:0;width:2px;background:#c23b2c;transform:scaleY(0);transform-origin:top}
+[data-reveal-bio].is-visible::before{animation:bio-line 1.2s cubic-bezier(.65,0,.35,1) var(--bio-delay,0s) both}
+
+/* Step 2. inline-block so the span can be animated as a box. */
+[data-reveal-bio] .bio-role{display:inline-block;opacity:0}
+[data-reveal-bio].is-visible .bio-role{animation:bio-track .9s cubic-bezier(.16,.8,.24,1) calc(var(--bio-delay,0s) + .15s) both}
+
+/* Step 3. clip-path hides everything right of a moving edge; animating the
+   right inset from 100% to 0 uncovers the name like a curtain sliding open. */
+[data-reveal-bio] .bio-name{clip-path:inset(0 100% 0 0)}
+[data-reveal-bio].is-visible .bio-name{animation:bio-wipe .9s cubic-bezier(.65,0,.35,1) calc(var(--bio-delay,0s) + .35s) both}
+
+/* Step 4. Each paragraph waits a little longer than the one before it. */
+[data-reveal-bio] p{opacity:0}
+[data-reveal-bio].is-visible p{animation:bio-rise .8s cubic-bezier(.16,.8,.24,1) calc(var(--bio-delay,0s) + var(--p-delay,.55s)) both}
+[data-reveal-bio] p:nth-of-type(2){--p-delay:.7s}
+[data-reveal-bio] p:nth-of-type(3){--p-delay:.85s}
+[data-reveal-bio] p:nth-of-type(4){--p-delay:1s}
+
+/* Two columns from 768px up: start the right hand bio a beat after the left.
+   On phones each bio scrolls in on its own, so no delay is needed. */
+@media (min-width:768px){[data-reveal-bio]:nth-child(2){--bio-delay:.25s}}
+
+/* `both` in the animations above keeps the start frame applied during the
+   delay and the end frame once it finishes, so nothing flashes or snaps back. */
+@keyframes bio-line{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+@keyframes bio-track{from{opacity:0;letter-spacing:.35em}to{opacity:1;letter-spacing:normal}}
+@keyframes bio-wipe{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+@keyframes bio-rise{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+
+/* Visitors who ask their OS for less motion just see everything, no animation. */
+@media (prefers-reduced-motion:reduce){
+  [data-reveal]{opacity:1;transform:none;transition:none}
+  [data-reveal-bio] .bio-role,[data-reveal-bio] p,[data-reveal-bio].is-visible .bio-role,[data-reveal-bio].is-visible p{opacity:1;animation:none}
+  [data-reveal-bio] .bio-name,[data-reveal-bio].is-visible .bio-name{clip-path:none;animation:none}
+  [data-reveal-bio]::before,[data-reveal-bio].is-visible::before{transform:none;animation:none}
+}

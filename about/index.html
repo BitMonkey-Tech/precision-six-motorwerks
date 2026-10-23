@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charSet="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Favicon: the .ico is the fallback for older browsers, modern browsers pick the sharper SVG, and iPhones use the PNG for home screen shortcuts. -->
+  <link rel="icon" href="/favicon.ico" sizes="32x32" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&amp;family=Archivo:ital,wght@0,400;0,500;1,700&amp;display=swap" data-precedence="default" />
+  <link rel="stylesheet" href="/assets/index-D637ba7w.css" type="text/css" data-precedence="default" /><link rel="stylesheet" href="/assets/header.css"/><link rel="stylesheet" href="/assets/carousel.css"/><link rel="stylesheet" href="/assets/about.css"/>
+  <link rel="stylesheet" href="/fonts/leotrace.css" />
+  <title>About | Precision Six Motorwerks (P6) | Porsche Specialist in Fort Myers, FL</title>
+  <meta name="description" content="Meet the team at Precision Six Motorwerks (P6), an independent Porsche specialist in Fort Myers, FL: founder Joe Russo and Porsche Certified Gold Technician Brendan." />
+  <!-- Canonical tells search engines "this is the one true URL for this page" --
+       useful if the same content is ever reachable at more than one address. -->
+  <link rel="canonical" href="https://precisionsixmotorwerks.com/about" />
+  <!-- Open Graph + Twitter Card: control the title/description/image shown
+       when this page is shared as a link on Facebook, iMessage, Slack, X, etc. -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Precision Six Motorwerks" />
+  <meta property="og:title" content="About | Precision Six Motorwerks (P6) | Porsche Specialist in Fort Myers, FL" />
+  <meta property="og:description" content="Meet the team at Precision Six Motorwerks (P6), an independent Porsche specialist in Fort Myers, FL: founder Joe Russo and Porsche Certified Gold Technician Brendan." />
+  <meta property="og:url" content="https://precisionsixmotorwerks.com/about" />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1658863567540-b8d86757bdf1?flip=h&amp;q=80&amp;w=1200&amp;h=630&amp;fit=crop&amp;auto=format" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="About | Precision Six Motorwerks (P6) | Porsche Specialist in Fort Myers, FL" />
+  <meta name="twitter:description" content="Meet the team at Precision Six Motorwerks (P6), an independent Porsche specialist in Fort Myers, FL: founder Joe Russo and Porsche Certified Gold Technician Brendan." />
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1658863567540-b8d86757bdf1?flip=h&amp;q=80&amp;w=1200&amp;h=630&amp;fit=crop&amp;auto=format" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+</head>
+<body>
+<div class="bg-[#0c0c0d] text-[#ece9e4] font-body">
+
+  <!-- Header: same sticky nav bar as the other pages. ABOUT carries the
+       `is-active` class here so it shows as the current page. -->
+  <header class="site-header sticky top-0 z-30 border-b border-white/10 bg-gradient-to-b from-[#161616] to-[#0c0c0d]/95 backdrop-blur">
+    <div class="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-4 md:px-10">
+      <div class="site-logo flex items-center gap-3">
+        <img src="/images/p6-logo.svg" alt="Precision Six Motorwerks" style="height:40px;width:auto;display:block" />
+      </div>
+      <div class="flex items-center gap-8">
+        <nav class="desktop-nav gap-10 font-label text-sm tracking-[0.18em]">
+          <a href="/" class="pb-1 transition-colors nav-link-desktop">HOME</a>
+          <a href="/about" class="pb-1 transition-colors nav-link-desktop is-active">ABOUT</a>
+          <a href="/services" class="pb-1 transition-colors nav-link-desktop">SERVICES</a>
+          <a href="/contact" class="pb-1 transition-colors nav-link-desktop">CONTACT</a>
+        </nav>
+        <a href="/contact#schedule" class="desktop-cta bg-[#c23b2c] px-9 py-4 font-label text-sm tracking-[0.22em] text-white transition-colors hover:bg-[#a6301f]">SCHEDULE APPOINTMENT</a>
+        <button type="button" class="menu-toggle" data-menu-toggle aria-label="Toggle menu" aria-expanded="false">
+          <svg data-icon-open viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+          <svg data-icon-close viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="display:none"><line x1="5" y1="5" x2="19" y2="19"></line><line x1="19" y1="5" x2="5" y2="19"></line></svg>
+        </button>
+      </div>
+    </div>
+    <div class="mobile-nav" data-mobile-nav>
+      <a href="/">HOME</a>
+      <a href="/about" class="is-active">ABOUT</a>
+      <a href="/services">SERVICES</a>
+      <a href="/contact">CONTACT</a>
+      <a href="/contact#schedule" class="mobile-cta">SCHEDULE APPOINTMENT</a>
+    </div>
+  </header>
+
+  <!-- About section. Same copy as the home page's About block, but the top
+       heading is an <h1> because on a standalone page it's the main title.
+       [data-reveal] fades each piece up as it scrolls into view, and
+       [data-reveal-bio] runs the bio entrance animation; both are styled in
+       /assets/about.css and triggered by /assets/site.js. -->
+  <section class="about-page border-t border-white/10 bg-[#131313]">
+    <div class="mx-auto max-w-[1400px] px-6 py-24 md:px-10">
+      <h1 class="font-label text-4xl text-white sm:text-5xl tracking-[0.04em]" data-reveal style="font-style:italic">ABOUT</h1>
+      <p class="mt-2 max-w-sm text-sm leading-relaxed text-[#c23b2c]" data-reveal="1">Southwest Florida's Porsche dealer alternative.</p>
+      <div style="margin-top:48px" data-reveal="2">
+        <p class="text-sm leading-relaxed text-[#a29e97]" style="max-width:640px">Precision Six Motorwerks was founded in Fort Myers on a simple idea: give Porsche owners in Southwest Florida a knowledgeable, transparent, highly specialized alternative to the dealership, without losing the personal relationship that comes with an independent shop.</p>
+      </div>
+
+      <div class="bios grid grid-cols-1 md:grid-cols-2" style="margin-top:64px;padding-top:64px;border-top:2px solid #c23b2c">
+        <div data-reveal-bio>
+          <span class="bio-role font-display text-lg text-[#c23b2c]">FOUNDER</span>
+          <h2 class="bio-name mt-2 font-display text-2xl text-white sm:text-3xl">Joseph “Joe” Russo</h2>
+          <p class="mt-4 text-sm leading-relaxed text-[#a29e97]">Joe is a lifelong Porsche enthusiast with a decade of experience working at Porsche dealerships in SWFL. He worked in all facets of the industry from sales to financing and management.</p>
+          <p class="mt-4 text-sm leading-relaxed text-[#a29e97]">An avid track enthusiast, husband, and father of three, Joe envisioned more than a repair shop. He wanted to create a welcoming place where Porsche owners could connect, share their passion, and feel confident in the care their cars receive. Joe saw a need in our community for a Porsche only facility that offers a premier dealer alternative.</p>
+        </div>
+        <div data-reveal-bio>
+          <span class="bio-role font-display text-lg text-[#c23b2c]">PORSCHE CERTIFIED GOLD TECHNICIAN</span>
+          <h2 class="bio-name mt-2 font-display text-2xl text-white sm:text-3xl">Brendan</h2>
+          <p class="mt-4 text-sm leading-relaxed text-[#a29e97]">Brendan brings nearly a decade of hands on Porsche experience to Precision Six Motorwerks in Fort Myers, backed by extensive factory training, certifications, and a genuine passion for the marque. He achieved Porsche Certified Gold Technician status, representing the highest level of technical training, diagnostic ability, and experience within the brand.</p>
+          <p class="mt-4 text-sm leading-relaxed text-[#a29e97]">Over the course of his career, he has worked extensively with Porsche vehicles ranging from classic air cooled models to the latest generations of high performance road cars. His experience includes advanced diagnostics, mechanical repair, drivetrain and transmission work, and performance focused service.</p>
+          <p class="mt-4 text-sm leading-relaxed text-[#a29e97]">Beyond the dealership environment, Brendan has remained closely involved with the Porsche and motorsports community throughout Southwest Florida. His involvement with local Porsche enthusiasts, motorsports events, and track focused vehicles has given him the opportunity to work with owners who care just as much about their cars as he does.</p>
+          <p class="mt-4 text-sm leading-relaxed text-[#a29e97]">For Brendan, Porsche has never simply been a brand he works on. It has been a major part of his life. From learning to drive a manual transmission in a 993 Turbo to building a career around the cars, Precision Six Motorwerks is the next chapter of that passion.</p>
+        </div>
+      </div>
+
+      <!-- Photo carousel: the same one as the other pages. /assets/instagram.js
+           fills the empty track with shop photos (or Instagram posts once its feed ID is set)
+           and keeps it hidden until it has cards to show. -->
+      <div id="instagram" role="region" aria-label="Photos from the shop" style="margin-top:64px;padding-top:64px;border-top:1px solid rgba(255,255,255,0.1)"><div class="ig-wrap"><div class="ig-track"></div><button type="button" class="ig-arrow ig-prev" aria-label="Previous photos"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button><button type="button" class="ig-arrow ig-next" aria-label="Next photos"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></button></div></div>
+
+      <div class="border-t border-white/10" style="margin-top:64px;padding-top:64px">
+        <a href="/contact#schedule" class="inline-block bg-[#c23b2c] px-9 py-4 font-label text-sm tracking-[0.22em] text-white transition-colors hover:bg-[#a6301f]">SCHEDULE APPOINTMENT</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="border-t border-white/10 bg-[#0c0c0d]">
+    <div class="mx-auto flex max-w-[1400px] flex-col gap-8 px-6 py-16 md:flex-row md:items-center md:justify-between md:px-10">
+      <div>
+        <img src="/images/p6-logo.svg" alt="Precision Six Motorwerks" style="height:36px;width:auto;display:block" />
+        <p class="mt-2 max-w-sm text-sm text-[#a29e97]"><a href="https://www.google.com/maps/dir/?api=1&amp;destination=14231+Jetport+Loop+W+%238,+Fort+Myers,+FL+33913" target="_blank" rel="noopener" class="transition-colors hover:text-[#e0523f]">14231 Jetport Loop W #8, Fort Myers, FL 33913</a><br/><span class="text-[#ece9e4]"><span class="text-[#c23b2c]">&#9656;</span> Entrance at front of building</span><br/>Mon–Fri, 9:00 AM–5:00 PM · Closed Sat &amp; Sun</p>
+      </div>
+      <div>
+        <a href="tel:12392083140" class="font-label text-lg tracking-[0.1em] text-[#c23b2c] transition-colors hover:text-[#e0523f]">(239) 208 3140</a>
+        <a href="mailto:info@precisionsixmotorwerks.com" class="mt-1 text-sm text-[#a29e97] transition-colors hover:text-[#e0523f]" style="display:block">info@precisionsixmotorwerks.com</a>
+        <div class="social-icons" style="margin-top:16px">
+          <a href="https://www.facebook.com/people/Precision-Six-Motorwerks/61594132116710/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.5 9.87v-6.98H7.9V12h2.6V9.8c0-2.56 1.52-3.98 3.86-3.98 1.12 0 2.3.2 2.3.2v2.5h-1.3c-1.28 0-1.68.8-1.68 1.62V12h2.86l-.46 2.89h-2.4v6.98A10 10 0 0 0 22 12Z"></path></svg></a>
+          <a href="https://www.instagram.com/precisionsixmotorwerks" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"></circle></svg></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</div>
+<!-- Shared vanilla script: runs the mobile menu toggle, nav highlighting, and the reveal animations. -->
+<script src="/assets/site.js"></script>
+  <!-- Fills the photo carousel above. defer runs it after the page has been parsed. -->
+  <script src="/assets/instagram.js" defer></script>
+
+<!-- Structured data (JSON-LD): machine-readable facts about the business and
+     its people, in a vocabulary called schema.org. Kept identical to the copy
+     on index.html so it matches wherever a crawler lands first. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "AutoRepair",
+  "name": "Precision Six Motorwerks",
+  "alternateName": "P6 Motorwerks",
+  "image": "https://precisionsixmotorwerks.com/images/p6-logo.svg",
+  "url": "https://precisionsixmotorwerks.com/",
+  "telephone": "+12392083140",
+  "email": "info@precisionsixmotorwerks.com",
+  "priceRange": "$$",
+  "areaServed": ["Fort Myers, FL", "Naples, FL", "Southwest Florida"],
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "14231 Jetport Loop W #8",
+    "addressLocality": "Fort Myers",
+    "addressRegion": "FL",
+    "postalCode": "33913",
+    "addressCountry": "US"
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      "opens": "09:00",
+      "closes": "17:00"
+    }
+  ],
+  "sameAs": [
+    "https://www.facebook.com/people/Precision-Six-Motorwerks/61594132116710/",
+    "https://www.instagram.com/precisionsixmotorwerks"
+  ],
+  "employee": [
+    {
+      "@type": "Person",
+      "name": "Joe Russo",
+      "jobTitle": "Founder"
+    },
+    {
+      "@type": "Person",
+      "name": "Brendan",
+      "jobTitle": "Porsche Certified Gold Technician"
+    }
+  ]
+}
+</script>
+</body>
+</html>
