@@ -11,7 +11,6 @@
     "https://script.google.com/macros/s/AKfycbwvNaYHF3QHWHj-iwsjxVPB8JNp3ex3_ilvKI3b2laVKfSvyCRK0HMtnMtkiWwimWjE/exec";
 
   const OPEN_DELAY_MS = 2000;
-  const SNOOZE_DAYS = 14; // after closing, wait this long before showing again
   const STORAGE_KEY = "p6-subscribe";
 
   const dialog = document.getElementById("subscribe-popup");
@@ -21,14 +20,13 @@
   const status = dialog.querySelector(".form-status");
   const submitBtn = form.querySelector('button[type="submit"]');
 
-  // localStorage remembers, per browser, that this visitor joined or closed
-  // the popup. try/catch because it can be blocked (e.g. private browsing).
-  function remembered() {
+  // localStorage remembers, per browser, that this visitor already joined.
+  // Closing the popup is not remembered, so it shows on every visit until they
+  // sign up. try/catch because it can be blocked (e.g. private browsing).
+  function hasJoined() {
     try {
       const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "null");
-      if (!saved) return false;
-      if (saved.joined) return true;
-      return Date.now() - saved.closedAt < SNOOZE_DAYS * 864e5;
+      return Boolean(saved && saved.joined);
     } catch (e) {
       return false;
     }
@@ -42,19 +40,12 @@
   const forced = location.hash === "#join";
   if (forced) {
     dialog.showModal();
-  } else if (SHEET_URL && !remembered()) {
+  } else if (SHEET_URL && !hasJoined()) {
     setTimeout(() => {
       // Don't interrupt someone who is already typing in a form on the page.
       if (!document.querySelector("form :focus")) dialog.showModal();
     }, OPEN_DELAY_MS);
   }
-
-  // The "close" event fires however the dialog is closed: the X, Esc, or a
-  // backdrop click. Snooze it unless they already joined.
-  dialog.addEventListener("close", () => {
-    if (dialog.dataset.joined) return;
-    remember({ closedAt: Date.now() });
-  });
 
   // Clicking the dark area around the box closes it. A click on the backdrop
   // is reported with the <dialog> itself as the target.
@@ -84,7 +75,6 @@
       const result = await res.json().catch(() => ({}));
       if (!res.ok || !result.ok) throw new Error(result.error || `HTTP ${res.status}`);
 
-      dialog.dataset.joined = "1";
       remember({ joined: true });
       form.hidden = true;
       dialog.querySelector(".sub-thanks").hidden = false;
