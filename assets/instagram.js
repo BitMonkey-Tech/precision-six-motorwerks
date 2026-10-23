@@ -86,30 +86,84 @@
     cards.forEach(function(card){ track.appendChild(card); });
   }
 
-  // Hide an arrow (via :disabled in CSS) when the row is already at that end.
+  // The row loops forever (see slide below), so there is never an end to
+  // hide an arrow at. Both arrows only hide (via :disabled in CSS) when every
+  // card already fits and there is nothing to scroll.
   function updateArrows(){
-    var max = track.scrollWidth - track.clientWidth - 2;
-    prev.disabled = track.scrollLeft <= 2;
-    next.disabled = track.scrollLeft >= max;
+    var nothingToScroll = track.scrollWidth - track.clientWidth <= 2;
+    prev.disabled = nothingToScroll;
+    next.disabled = nothingToScroll;
   }
 
-  // Each arrow click scrolls by about one screen's worth of cards.
-  function scrollByPage(dir){
-    track.scrollBy({ left: dir * track.clientWidth * 0.9, behavior: 'smooth' });
-  }
-
-  // Slide forward by one card (its width plus the CSS gap). At the end of
-  // the row, slide back to the first card so the rotation loops.
-  function step(){
-    var max = track.scrollWidth - track.clientWidth;
-    if (max <= 0) return; // every card already fits, nothing to rotate
-    if (track.scrollLeft >= max - 2) {
-      track.scrollTo({ left: 0, behavior: 'smooth' });
-      return;
-    }
+  // One step is a card's width plus the CSS gap after it.
+  function stepSize(){
     var gap = parseFloat(getComputedStyle(track).columnGap) || 0;
-    var cardWidth = track.children[0].getBoundingClientRect().width;
-    track.scrollBy({ left: cardWidth + gap, behavior: 'smooth' });
+    return track.children[0].getBoundingClientRect().width + gap;
+  }
+
+  // How long one slide takes, and its easing curve: starts slow, speeds up
+  // in the middle, then slows to a gentle stop (an "ease in out cubic").
+  var SLIDE_MS = 700;
+  function ease(t){
+    return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+  }
+
+  // The slide in progress, if any: its target position and animation frame.
+  var anim = null;
+
+  // Scroll snapping is turned off while we move the row ourselves (it would
+  // keep pulling the row back to the nearest card mid slide) and turned back
+  // on afterward so swipes on touch screens still snap. Setting '' hands the
+  // value back to the stylesheet.
+  function endSlide(){
+    anim = null;
+    track.style.scrollSnapType = '';
+  }
+
+  // If a slide is still running (say, a quick double click on an arrow),
+  // jump it to where it was heading so the next one starts from a clean spot.
+  function finishSlide(){
+    if (!anim) return;
+    cancelAnimationFrame(anim.frame);
+    track.scrollLeft = anim.to;
+    endSlide();
+  }
+
+  // Slide the row one card forward (dir 1) or back (dir -1). To loop without
+  // ever rewinding, a card is moved from one end of the row to the other just
+  // before it would run out, and the scroll position is shifted by the same
+  // amount, so nothing visibly jumps.
+  function slide(dir){
+    var max = track.scrollWidth - track.clientWidth;
+    if (max <= 2) return; // every card already fits, nothing to slide
+    finishSlide();
+    var size = stepSize();
+    track.style.scrollSnapType = 'none';
+    if (dir > 0 && track.scrollLeft + size > max - 2 && track.scrollLeft >= size - 2) {
+      // Near the end: move the first card (already scrolled out of view on
+      // the left) to the end of the row.
+      track.appendChild(track.firstElementChild);
+      track.scrollLeft -= size;
+    } else if (dir < 0 && track.scrollLeft < size - 2) {
+      // Near the start: bring the last card around to the front.
+      track.insertBefore(track.lastElementChild, track.firstElementChild);
+      track.scrollLeft += size;
+    }
+    var from = track.scrollLeft;
+    var to = Math.max(0, Math.min(track.scrollWidth - track.clientWidth, from + dir * size));
+    if (reduceMotion) { track.scrollLeft = to; endSlide(); return; }
+    var start = null;
+    // requestAnimationFrame runs the function right before the browser
+    // paints its next frame (about 60 times a second), so the row moves a
+    // little each frame along the easing curve.
+    function frame(now){
+      if (start === null) start = now;
+      var t = Math.min(1, (now - start) / SLIDE_MS);
+      track.scrollLeft = from + (to - from) * ease(t);
+      if (t < 1) anim.frame = requestAnimationFrame(frame);
+      else endSlide();
+    }
+    anim = { to: to, frame: requestAnimationFrame(frame) };
   }
 
   // Auto rotation timer. It is skipped for visitors who ask their device for
@@ -124,7 +178,7 @@
     clearInterval(timer);
     if (reduceMotion) return;
     timer = setInterval(function(){
-      if (!held && !document.hidden) step();
+      if (!held && !document.hidden) slide(1);
     }, AUTOPLAY_MS);
   }
 
@@ -137,8 +191,9 @@
   function activate(){
     if (!track.children.length) return;
     root.classList.add('has-posts');
-    prev.addEventListener('click', function(){ scrollByPage(-1); startAutoplay(); });
-    next.addEventListener('click', function(){ scrollByPage(1); startAutoplay(); });
+    // Each arrow click slides one card, the same smooth slide as autoplay.
+    prev.addEventListener('click', function(){ slide(-1); startAutoplay(); });
+    next.addEventListener('click', function(){ slide(1); startAutoplay(); });
     track.addEventListener('scroll', updateArrows, { passive: true });
     window.addEventListener('resize', updateArrows);
     root.addEventListener('mouseenter', hold);
