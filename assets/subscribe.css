@@ -20,16 +20,12 @@
 .sub-lede{margin:14px auto 28px;max-width:300px;text-align:center;font-size:15px;line-height:1.5;color:#a29e97}
 
 .sub-form{display:flex;flex-direction:column;gap:14px}
-.sub-form input,.sub-form select{width:100%;background:#0c0c0d;border:1px solid rgba(255,255,255,.18);border-radius:2px;padding:14px 16px;color:#ece9e4;font-family:"Archivo",sans-serif;font-size:15px;outline:none;transition:border-color .15s ease}
+.sub-form input{width:100%;background:#0c0c0d;border:1px solid rgba(255,255,255,.18);border-radius:2px;padding:14px 16px;color:#ece9e4;font-family:"Archivo",sans-serif;font-size:15px;outline:none;transition:border-color .15s ease}
 .sub-form input::placeholder{color:#6b6f78}
 /* First and last name share a row, except on narrow phones where they stack. */
 .sub-row{display:grid;grid-template-columns:1fr;gap:14px}
 @media (min-width:480px){.sub-row{grid-template-columns:1fr 1fr}}
-.sub-form input:focus,.sub-form select:focus{border-color:#c23b2c}
-/* Grey "Car I drive" text until a real option is picked, like a placeholder. */
-.sub-form select:invalid{color:#6b6f78}
-.sub-form select{appearance:none;background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="8" viewBox="0 0 12 8"><path d="M1 1l5 5 5-5" stroke="%23a29e97" stroke-width="1.5" fill="none"/></svg>');background-repeat:no-repeat;background-position:right 16px center}
-.sub-form option{color:#ece9e4;background:#131313}
+.sub-form input:focus{border-color:#c23b2c}
 /* Button and status line, matching the contact page's quote form. */
 .sub-form .submit-btn{background:#c23b2c;color:#fff;border:none;border-radius:2px;padding:14px 32px;margin-top:6px;font-family:"Oswald",sans-serif;font-weight:600;font-size:14px;letter-spacing:.22em;text-transform:uppercase;cursor:pointer;transition:background-color .15s ease}
 .sub-form .submit-btn:hover{background:#a6301f}
