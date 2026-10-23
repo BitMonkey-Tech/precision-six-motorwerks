@@ -9,7 +9,7 @@
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&amp;family=Archivo:ital,wght@0,400;0,500;1,700&amp;display=swap" data-precedence="default" />
-  <link rel="stylesheet" href="/assets/index-D637ba7w.css" type="text/css" data-precedence="default" /><link rel="stylesheet" href="/assets/header.css"/><link rel="stylesheet" href="/assets/carousel.css"/><link rel="stylesheet" href="/assets/service-cards.css"/>
+  <link rel="stylesheet" href="/assets/index-D637ba7w.css" type="text/css" data-precedence="default" /><link rel="stylesheet" href="/assets/header.css"/><link rel="stylesheet" href="/assets/service-cards.css"/><link rel="stylesheet" href="/assets/service-rows.css"/>
   <link rel="stylesheet" href="/fonts/leotrace.css" />
   <title>Services | Precision Six Motorwerks (P6) | Porsche Specialist in Fort Myers, FL</title>
   <meta name="description" content="Services at Precision Six Motorwerks (P6), an independent Porsche specialist in Fort Myers, FL: factory scheduled maintenance, performance tuning and upgrades, tire mounting and balancing, and diagnostics and repair." />
@@ -66,7 +66,8 @@
     </div>
   </header>
 
-  <!-- Services section. Same card grid and FAQ as the home page, but the top
+  <!-- Services section. Same services and FAQ as the home page (laid out as
+       alternating photo rows instead of the card grid), but the top
        heading is an <h1> because on a standalone page it's the main title
        (the home page uses <h2> there since its <h1> is the hero). -->
   <section class="border-t border-white/10 bg-[#131313]">
@@ -75,33 +76,48 @@
         <h1 class="font-label text-4xl sm:text-5xl tracking-[0.04em] text-[#c23b2c]" style="font-style:italic">Precision Six Motorwerks | SWFL's Premier Porsche Dealer Alternative</h1>
       </div>
 
-      <div class="grid grid-cols-1 gap-px overflow-hidden rounded-sm bg-white/10 md:grid-cols-2">
-        <div data-reveal-card class="group relative bg-[#131313] p-8 transition-colors hover:bg-[#1c1c1c] sm:p-10">
-          <span class="font-display text-sm text-[#c23b2c]">01</span>
-          <h3 class="mt-4 font-display text-2xl text-white sm:text-3xl">Factory Scheduled Maintenance</h3>
-          <p class="mt-4 max-w-md text-sm leading-relaxed text-[#a29e97]">Every interval on the factory schedule, from routine oil services to the major milestones, done with genuine OEM parts and a service history you can hand to the next owner.</p>
+      <!-- Services as alternating rows (text | photo, then photo | text), so this page
+           reads differently from the home page's 2x2 card grid. Layout lives in
+           /assets/service-rows.css; text always comes first in the HTML and CSS
+           swaps the sides on even rows. -->
+      <div class="service-rows">
+        <div class="service-row">
+          <div data-reveal-card class="service-row-text">
+            <span class="font-display text-sm text-[#c23b2c]">01</span>
+            <h3 class="mt-4 font-display text-white">Factory Scheduled Maintenance</h3>
+            <p class="mt-4 leading-relaxed text-[#a29e97]">Every interval on the factory schedule, from routine oil services to the major milestones, done with genuine OEM parts and a service history you can hand to the next owner.</p>
+            <a href="/contact#schedule" class="service-row-cta inline-block bg-[#c23b2c] px-9 py-4 font-label text-sm tracking-[0.22em] text-white transition-colors hover:bg-[#a6301f]">SCHEDULE APPOINTMENT</a>
+          </div>
+          <div data-reveal class="service-row-media"><img src="/images/shop/shop-8.jpg" alt="Black Panamera raised on a lift with its hood open while a technician drains the oil" loading="lazy" width="900" height="675"></div>
         </div>
-        <div data-reveal-card class="group relative bg-[#131313] p-8 transition-colors hover:bg-[#1c1c1c] sm:p-10">
-          <span class="font-display text-sm text-[#c23b2c]">02</span>
-          <h3 class="mt-4 font-display text-2xl text-white sm:text-3xl">Performance, Tuning <span class="amp">&amp;</span> Upgrades</h3>
-          <p class="mt-4 max-w-md text-sm leading-relaxed text-[#a29e97]">ECU calibration, and exhaust work built to unlock capability without giving up daily driver reliability, from mild street cars to GT3 and GT4 clubsport builds.</p>
+        <div class="service-row">
+          <div data-reveal-card class="service-row-text">
+            <span class="font-display text-sm text-[#c23b2c]">02</span>
+            <h3 class="mt-4 font-display text-white">Performance, Tuning <span class="amp">&amp;</span> Upgrades</h3>
+            <p class="mt-4 leading-relaxed text-[#a29e97]">ECU calibration, and exhaust work built to unlock capability without giving up daily driver reliability, from mild street cars to GT3 and GT4 clubsport builds.</p>
+            <a href="/contact#schedule" class="service-row-cta inline-block bg-[#c23b2c] px-9 py-4 font-label text-sm tracking-[0.22em] text-white transition-colors hover:bg-[#a6301f]">SCHEDULE APPOINTMENT</a>
+          </div>
+          <div data-reveal class="service-row-media"><img src="/images/shop/shop-3.jpg" alt="Grey 911 Carrera parked under a blue two post lift" loading="lazy" width="900" height="675"></div>
         </div>
-        <div data-reveal-card class="group relative bg-[#131313] p-8 transition-colors hover:bg-[#1c1c1c] sm:p-10">
-          <span class="font-display text-sm text-[#c23b2c]">03</span>
-          <h3 class="mt-4 font-display text-2xl text-white sm:text-3xl">Mount <span class="amp">&amp;</span> Balance Tires</h3>
-          <p class="mt-4 max-w-md text-sm leading-relaxed text-[#a29e97]">Mounting and balancing on Hunter's Porsche approved equipment, the vibration free ride quality a standard tire shop's machine can't match.</p>
+        <div class="service-row">
+          <div data-reveal-card class="service-row-text">
+            <span class="font-display text-sm text-[#c23b2c]">03</span>
+            <h3 class="mt-4 font-display text-white">Mount <span class="amp">&amp;</span> Balance Tires</h3>
+            <p class="mt-4 leading-relaxed text-[#a29e97]">Mounting and balancing on Hunter's Porsche approved equipment, the vibration free ride quality a standard tire shop's machine can't match.</p>
+            <a href="/contact#schedule" class="service-row-cta inline-block bg-[#c23b2c] px-9 py-4 font-label text-sm tracking-[0.22em] text-white transition-colors hover:bg-[#a6301f]">SCHEDULE APPOINTMENT</a>
+          </div>
+          <div data-reveal class="service-row-media"><img src="/images/shop/shop-2.jpg" alt="Silver 911 GT3 beside the tire machine, with a 911 raised on a lift behind it" loading="lazy" width="900" height="675"></div>
         </div>
-        <div data-reveal-card class="group relative bg-[#131313] p-8 transition-colors hover:bg-[#1c1c1c] sm:p-10">
-          <span class="font-display text-sm text-[#c23b2c]">04</span>
-          <h3 class="mt-4 font-display text-2xl text-white sm:text-3xl">Diagnostics <span class="amp">&amp;</span> Repair</h3>
-          <p class="mt-4 max-w-md text-sm leading-relaxed text-[#a29e97]">Factory level diagnostics and root cause repair for the M96, M97, and modern DFI flat sixes, no guesswork, no parts cannon repairs.</p>
+        <div class="service-row">
+          <div data-reveal-card class="service-row-text">
+            <span class="font-display text-sm text-[#c23b2c]">04</span>
+            <h3 class="mt-4 font-display text-white">Diagnostics <span class="amp">&amp;</span> Repair</h3>
+            <p class="mt-4 leading-relaxed text-[#a29e97]">Factory level diagnostics and root cause repair for the M96, M97, and modern DFI flat sixes, no guesswork, no parts cannon repairs.</p>
+            <a href="/contact#schedule" class="service-row-cta inline-block bg-[#c23b2c] px-9 py-4 font-label text-sm tracking-[0.22em] text-white transition-colors hover:bg-[#a6301f]">SCHEDULE APPOINTMENT</a>
+          </div>
+          <div data-reveal class="service-row-media"><img src="/images/shop/shop-7.jpg" alt="Technician using a mechanic's stethoscope to listen to the engine of a black Panamera" loading="lazy" width="900" height="675"></div>
         </div>
       </div>
-
-      <!-- Photo carousel: the same one as the home and contact pages. /assets/instagram.js
-           fills the empty track with shop photos (or Instagram posts once its feed ID is set)
-           and keeps it hidden until it has cards to show. -->
-      <div id="instagram" role="region" aria-label="Photos from the shop" style="margin-top:64px;padding-top:64px;border-top:1px solid rgba(255,255,255,0.1)"><div class="ig-wrap"><div class="ig-track"></div><button type="button" class="ig-arrow ig-prev" aria-label="Previous photos"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button><button type="button" class="ig-arrow ig-next" aria-label="Next photos"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></button></div></div>
 
       <div style="margin-top:64px;padding-top:64px;border-top:2px solid #c23b2c">
         <h2 class="font-label text-4xl text-[#c23b2c] sm:text-5xl tracking-[0.04em]" style="font-style:italic">COMMON QUESTIONS</h2>
@@ -164,8 +180,6 @@
 </div>
 <!-- Shared vanilla script: runs the mobile menu toggle and nav highlighting. -->
 <script src="/assets/site.js"></script>
-  <!-- Fills the photo carousel above. defer runs it after the page has been parsed. -->
-  <script src="/assets/instagram.js" defer></script>
 
 <!-- Structured data (JSON-LD): machine-readable facts about the business and
      this page's FAQ content, in a vocabulary called schema.org. Search engines
