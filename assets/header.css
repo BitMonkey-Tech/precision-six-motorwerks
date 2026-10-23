@@ -42,7 +42,7 @@
 
 /* Logo panel entrance, matching the service cards (/assets/service-cards.css):
    a thin red line traces around the black panel (along the top, down the slant,
-   back along the bottom) and then fades, while the logo rises in. The header is
+   back along the bottom) and then stays as a border, while the logo rises in. The header is
    always on screen when a page opens, so this simply plays on load with plain
    CSS; no scroll watching JavaScript is needed. */
 .site-header .site-logo img{animation:logo-rise .8s cubic-bezier(.16,.8,.24,1) .15s both}
@@ -58,8 +58,10 @@
    instead of a whole screen width off it, so the line is visible from the
    moment it starts. The logo sits (screen width - 1400px) / 2 in from the edge
    on wide screens, plus the container's 24px side padding (40px from 768px
-   up); 20px extra puts the start safely off screen. */
-.site-header .site-logo::after{--s:44px;--t:2px;--ti:2.5px;content:"";position:absolute;top:-18.5px;bottom:-18.5px;left:calc(-1 * max(0px,(100vw - 1400px) / 2) - 44px);right:0;background:#c23b2c;pointer-events:none;animation:logo-trace 1.8s linear both}
+   up); 20px extra puts the start safely off screen.
+   --done is the finished outline. It is also the box's own clip-path, so once
+   the animation ends (or never runs, for reduced motion) the border stays. */
+.site-header .site-logo::after{--s:44px;--t:2px;--ti:2.5px;--done:polygon(0 0,100% 0,calc(100% - var(--s)) 100%,0 100%,0 calc(100% - var(--t)),calc(100% - var(--s) - var(--ti)) calc(100% - var(--t)),calc(100% - var(--ti)) var(--t),0 var(--t));content:"";position:absolute;top:-18.5px;bottom:-18.5px;left:calc(-1 * max(0px,(100vw - 1400px) / 2) - 44px);right:0;background:#c23b2c;pointer-events:none;clip-path:var(--done);animation:logo-trace 1.45s linear}
 @media(min-width:48rem){.site-header .site-logo::after{left:calc(-1 * max(0px,(100vw - 1400px) / 2) - 60px)}}
 /* Desktop: match the panel's longer hang below the bar and its wider slant. */
 @media(min-width:64rem){.site-header .site-logo::after{--s:64px;bottom:-38.5px}}
@@ -71,14 +73,14 @@
    points, so the "unfinished" points are parked at the pen's position (the
    line's moving tip) and move out along the path as it is drawn.
    Each step's timing function applies until the next step: speed up along the
-   top, steady down the slant, ease to a stop along the bottom, then fade. */
+   top, steady down the slant, ease to a stop along the bottom. */
 @keyframes logo-trace{
-  0%{opacity:1;animation-timing-function:cubic-bezier(.55,0,1,1);clip-path:polygon(0 0,0 0,0 0,0 0,0 var(--t),0 var(--t),0 var(--t),0 var(--t))}
-  35%{clip-path:polygon(0 0,100% 0,100% 0,100% 0,calc(100% - var(--ti)) var(--t),calc(100% - var(--ti)) var(--t),calc(100% - var(--ti)) var(--t),0 var(--t))}
-  50%{animation-timing-function:cubic-bezier(0,0,.35,1);clip-path:polygon(0 0,100% 0,calc(100% - var(--s)) 100%,calc(100% - var(--s)) 100%,calc(100% - var(--s) - var(--ti)) calc(100% - var(--t)),calc(100% - var(--s) - var(--ti)) calc(100% - var(--t)),calc(100% - var(--ti)) var(--t),0 var(--t))}
-  80%{opacity:1;clip-path:polygon(0 0,100% 0,calc(100% - var(--s)) 100%,0 100%,0 calc(100% - var(--t)),calc(100% - var(--s) - var(--ti)) calc(100% - var(--t)),calc(100% - var(--ti)) var(--t),0 var(--t))}
-  100%{opacity:0;clip-path:polygon(0 0,100% 0,calc(100% - var(--s)) 100%,0 100%,0 calc(100% - var(--t)),calc(100% - var(--s) - var(--ti)) calc(100% - var(--t)),calc(100% - var(--ti)) var(--t),0 var(--t))}
+  0%{animation-timing-function:cubic-bezier(.55,0,1,1);clip-path:polygon(0 0,0 0,0 0,0 0,0 var(--t),0 var(--t),0 var(--t),0 var(--t))}
+  44%{clip-path:polygon(0 0,100% 0,100% 0,100% 0,calc(100% - var(--ti)) var(--t),calc(100% - var(--ti)) var(--t),calc(100% - var(--ti)) var(--t),0 var(--t))}
+  62%{animation-timing-function:cubic-bezier(0,0,.35,1);clip-path:polygon(0 0,100% 0,calc(100% - var(--s)) 100%,calc(100% - var(--s)) 100%,calc(100% - var(--s) - var(--ti)) calc(100% - var(--t)),calc(100% - var(--s) - var(--ti)) calc(100% - var(--t)),calc(100% - var(--ti)) var(--t),0 var(--t))}
+  100%{clip-path:var(--done)}
 }
 
-/* Visitors who ask their OS for less motion just see the logo, no animation. */
-@media (prefers-reduced-motion:reduce){.site-header .site-logo img{animation:none}.site-header .site-logo::after{display:none}}
+/* Visitors who ask their OS for less motion see the logo and the finished
+   border straight away, with no animation. */
+@media (prefers-reduced-motion:reduce){.site-header .site-logo img,.site-header .site-logo::after{animation:none}}
