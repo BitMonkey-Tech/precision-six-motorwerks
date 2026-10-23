@@ -1,0 +1,35 @@
+/* Service card entrance animation, shared by the home and services pages.
+   /assets/site.js adds `is-visible` to each [data-reveal-card] the first time
+   it scrolls into view, which starts the keyframe animations below.
+
+   Only the card's contents animate, never the card box itself: the grid draws
+   its 1px divider lines with a light background showing through the gaps, so
+   a see-through card would flash that grey across its whole area.
+
+   Keyframe animations are used (instead of the `transition` that
+   [data-reveal] uses) so nothing here can override the cards' Tailwind
+   `transition-colors` hover fade. */
+
+/* Contents hidden until revealed. */
+[data-reveal-card]>*{opacity:0}
+
+/* Number, title, then text each rise into place, a beat apart. `both` keeps
+   the start frame applied during the delay and the end frame once it ends. */
+[data-reveal-card].is-visible>*{animation:card-rise .8s cubic-bezier(.16,.8,.24,1) calc(var(--card-delay,0s) + var(--item-delay,0s)) both}
+[data-reveal-card]>span:first-child{display:inline-block;--item-delay:0s}
+[data-reveal-card]>h3{--item-delay:.1s}
+[data-reveal-card]>p{--item-delay:.2s}
+
+/* A thin red line sweeps across the top of the card as it lands, then fades. */
+[data-reveal-card]::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:#c23b2c;transform:scaleX(0);transform-origin:left;opacity:0;pointer-events:none}
+[data-reveal-card].is-visible::before{animation:card-sweep 1.3s cubic-bezier(.65,0,.35,1) var(--card-delay,0s) both}
+
+/* Two columns from 768px up: delay the right hand card in each row so the pair
+   staggers. On phones each card appears on its own, so no delay is needed. */
+@media (min-width:768px){[data-reveal-card]:nth-child(even){--card-delay:.15s}}
+
+@keyframes card-rise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+@keyframes card-sweep{0%{opacity:1;transform:scaleX(0)}60%{opacity:1;transform:scaleX(1)}100%{opacity:0;transform:scaleX(1)}}
+
+/* Visitors who ask their OS for less motion just see the cards, no animation. */
+@media (prefers-reduced-motion:reduce){[data-reveal-card]>*,[data-reveal-card].is-visible>*{opacity:1;animation:none}[data-reveal-card]::before{display:none}}

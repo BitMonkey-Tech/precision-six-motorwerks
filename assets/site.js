@@ -54,11 +54,12 @@
   });
 })();
 
-// Reveal-on-scroll: fades/slides in any [data-reveal] element as it enters the
+// Reveal-on-scroll: fades/slides in any [data-reveal] (or [data-reveal-card]) element as it enters the
 // viewport. Skips the animation entirely for prefers-reduced-motion, and for
 // browsers without IntersectionObserver, by just showing everything at once.
 (function(){
-  var els = document.querySelectorAll('[data-reveal]');
+  // [data-reveal-card] is the service cards, styled in /assets/service-cards.css.
+  var els = document.querySelectorAll('[data-reveal], [data-reveal-card]');
   if (!els.length) return;
 
   var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
