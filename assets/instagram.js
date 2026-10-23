@@ -30,6 +30,8 @@
   var prev = root.querySelector('.ig-prev');
   var next = root.querySelector('.ig-next');
   var MAX_POSTS = 12;
+  // Auto rotation: slide forward one card every AUTOPLAY_MS milliseconds.
+  var AUTOPLAY_MS = 3000;
 
   // Pick a reasonably small image: Behold's resized "medium" (max 700px) if
   // present, else the raw image. For videos, mediaUrl is the video itself,
@@ -96,16 +98,57 @@
     track.scrollBy({ left: dir * track.clientWidth * 0.9, behavior: 'smooth' });
   }
 
+  // Slide forward by one card (its width plus the CSS gap). At the end of
+  // the row, slide back to the first card so the rotation loops.
+  function step(){
+    var max = track.scrollWidth - track.clientWidth;
+    if (max <= 0) return; // every card already fits, nothing to rotate
+    if (track.scrollLeft >= max - 2) {
+      track.scrollTo({ left: 0, behavior: 'smooth' });
+      return;
+    }
+    var gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+    var cardWidth = track.children[0].getBoundingClientRect().width;
+    track.scrollBy({ left: cardWidth + gap, behavior: 'smooth' });
+  }
+
+  // Auto rotation timer. It is skipped for visitors who ask their device for
+  // reduced motion, held while the mouse or keyboard focus is on the
+  // carousel (so it never moves under someone reading or clicking it), and
+  // idle while the browser tab is in the background.
+  var timer = null;
+  var held = false;
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function startAutoplay(){
+    clearInterval(timer);
+    if (reduceMotion) return;
+    timer = setInterval(function(){
+      if (!held && !document.hidden) step();
+    }, AUTOPLAY_MS);
+  }
+
+  function hold(){ held = true; }
+  // Restarting the timer on release gives a full 3 seconds before it moves.
+  function release(){ held = false; startAutoplay(); }
+
   // Show the section (CSS keeps it hidden until .has-posts) and wire up the
   // arrows, as long as there is at least one card in the track.
   function activate(){
     if (!track.children.length) return;
     root.classList.add('has-posts');
-    prev.addEventListener('click', function(){ scrollByPage(-1); });
-    next.addEventListener('click', function(){ scrollByPage(1); });
+    prev.addEventListener('click', function(){ scrollByPage(-1); startAutoplay(); });
+    next.addEventListener('click', function(){ scrollByPage(1); startAutoplay(); });
     track.addEventListener('scroll', updateArrows, { passive: true });
     window.addEventListener('resize', updateArrows);
+    root.addEventListener('mouseenter', hold);
+    root.addEventListener('mouseleave', release);
+    root.addEventListener('focusin', hold);
+    root.addEventListener('focusout', release);
+    // A swipe on a touch screen restarts the countdown from the new spot.
+    track.addEventListener('touchstart', startAutoplay, { passive: true });
     updateArrows();
+    startAutoplay();
   }
 
   // Start with the shop photos so there is always something to show.
