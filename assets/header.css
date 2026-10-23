@@ -39,3 +39,18 @@
   .site-header .site-logo img{height:52px!important}
   .site-header .site-logo::before{bottom:-38.5px;clip-path:polygon(0 0,100% 0,calc(100% - 64px) 100%,0 100%)}
 }
+
+/* Logo panel entrance, matching the service cards (/assets/service-cards.css):
+   a thin red line sweeps across the top of the black panel while the logo rises
+   in. The header is always on screen when a page opens, so this simply plays on
+   load with plain CSS; no scroll watching JavaScript is needed. */
+.site-header .site-logo img{animation:logo-rise .8s cubic-bezier(.16,.8,.24,1) .15s both}
+/* ::after is a second decorative box (::before is already the black panel). It
+   spans the panel's top edge, from the screen's left edge to the slant. */
+.site-header .site-logo::after{content:"";position:absolute;top:-18.5px;left:-100vw;right:0;height:2px;background:#c23b2c;transform-origin:left;pointer-events:none;animation:logo-sweep 1.3s cubic-bezier(.65,0,.35,1) both}
+
+@keyframes logo-rise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+@keyframes logo-sweep{0%{opacity:1;transform:scaleX(0)}60%{opacity:1;transform:scaleX(1)}100%{opacity:0;transform:scaleX(1)}}
+
+/* Visitors who ask their OS for less motion just see the logo, no animation. */
+@media (prefers-reduced-motion:reduce){.site-header .site-logo img{animation:none}.site-header .site-logo::after{display:none}}
