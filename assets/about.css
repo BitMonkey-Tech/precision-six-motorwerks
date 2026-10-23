@@ -80,6 +80,21 @@
 .bc-dots button:hover{background-color:rgba(255,255,255,.45)}
 .bc-dots button[aria-current]{background-color:#c23b2c}
 
+/* Our Shop. The amenity grid is written here instead of with Tailwind classes
+   because the compiled Tailwind CSS has no sm:grid-cols-2 or lg:grid-cols-4.
+   Each card gets a thin red rule on top, echoing the red line above the bios. */
+.shop-amenities{display:grid;grid-template-columns:1fr;gap:40px;margin-top:48px;padding:0;list-style:none}
+@media (min-width:640px){.shop-amenities{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:1024px){.shop-amenities{grid-template-columns:repeat(4,1fr);gap:32px}}
+.shop-amenities li{padding-top:20px;border-top:2px solid #c23b2c}
+.shop-amenities svg{width:32px;height:32px;color:#c23b2c}
+.shop-amenities h3{margin-top:16px;letter-spacing:.14em}
+.shop-amenities p{margin-top:8px}
+/* Cards fade up one after another rather than all at once. */
+.shop-amenities li:nth-child(2){transition-delay:.1s}
+.shop-amenities li:nth-child(3){transition-delay:.2s}
+.shop-amenities li:nth-child(4){transition-delay:.3s}
+
 /* `both` in the animations above keeps the start frame applied during the
    delay and the end frame once it finishes, so nothing flashes or snaps back. */
 @keyframes bio-line{from{transform:scaleY(0)}to{transform:scaleY(1)}}

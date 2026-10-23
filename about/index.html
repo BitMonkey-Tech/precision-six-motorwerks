@@ -127,6 +127,39 @@
         </div>
       </div>
 
+      <!-- Our Shop: what customers can do while they wait. Four amenity cards in
+           a grid (1 column on phones, 2 on tablets, 4 on desktop); the grid and
+           the staggered fade in are set in /assets/about.css under "Our Shop".
+           Icons are inline SVGs, aria-hidden because the heading under each one
+           already says what it is. -->
+      <div class="shop border-t border-white/10" style="margin-top:64px;padding-top:64px">
+        <h2 class="font-label text-3xl text-white sm:text-4xl tracking-[0.04em]" data-reveal style="font-style:italic">OUR SHOP</h2>
+        <p class="mt-2 max-w-sm text-sm leading-relaxed text-[#c23b2c]" data-reveal="1">Make yourself at home while we work.</p>
+        <p class="mt-4 text-sm leading-relaxed text-[#a29e97]" style="max-width:640px" data-reveal="2">You are always welcome to stay while your Porsche is in our care. Our customer lounge is a comfortable place to pass the time, so waiting on your car feels less like an errand and more like a visit.</p>
+        <ul class="shop-amenities">
+          <li data-reveal>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 11V7a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v4"/><path d="M3 13a2 2 0 0 1 4 0v2h10v-2a2 2 0 0 1 4 0v4a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/><path d="M6 18v2M18 18v2"/></svg>
+            <h3 class="font-label text-lg text-white">RELAX</h3>
+            <p class="text-sm leading-relaxed text-[#a29e97]">Settle into a comfortable seat in our lounge while we take care of your car.</p>
+          </li>
+          <li data-reveal>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9h13v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5z"/><path d="M17 11h1.5a2.5 2.5 0 0 1 0 5H17"/><path d="M8 3c0 1.5 1 1.5 1 3M12 3c0 1.5 1 1.5 1 3"/></svg>
+            <h3 class="font-label text-lg text-white">GRAB A BEVERAGE</h3>
+            <p class="text-sm leading-relaxed text-[#a29e97]">Help yourself to something to drink and enjoy it at your own pace.</p>
+          </li>
+          <li data-reveal>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="13" rx="1"/><path d="M8 21h8M12 18v3"/></svg>
+            <h3 class="font-label text-lg text-white">WATCH A SHOW</h3>
+            <p class="text-sm leading-relaxed text-[#a29e97]">Catch up on your favorite show or the latest race on the lounge TV.</p>
+          </li>
+          <li data-reveal>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2"/><path d="M3.5 10.5h6.5M14 10.5h6.5M12 14v7"/></svg>
+            <h3 class="font-label text-lg text-white">TURN A FEW LAPS</h3>
+            <p class="text-sm leading-relaxed text-[#a29e97]">Take a seat in our sim racer and put in a few laps while you wait.</p>
+          </li>
+        </ul>
+      </div>
+
       <div class="border-t border-white/10" style="margin-top:64px;padding-top:64px">
         <a href="/contact#schedule" class="inline-block bg-[#c23b2c] px-9 py-4 font-label text-sm tracking-[0.22em] text-white transition-colors hover:bg-[#a6301f]">SCHEDULE APPOINTMENT</a>
       </div>
