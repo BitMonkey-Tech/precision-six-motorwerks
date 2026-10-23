@@ -1,11 +1,11 @@
-/* Photo carousel (#instagram, filled by /assets/instagram.js) used on the home, services and contact pages. Hidden until the script adds its cards. The track is a horizontal row that scrolls and snaps card by card; the arrows sit over its left and right edges. */
+/* Photo carousel (#instagram, filled by /assets/instagram.js) used on the home, services and contact pages. Hidden until the script adds its cards. The track is a horizontal row that scrolls and snaps card by card; the arrows sit over its left and right edges. Card widths subtract the gaps between them (6px each: 3 gaps for 4 across, 2 for 3 across). */
 #instagram{display:none}
 #instagram.has-posts{display:block}
 #instagram .ig-wrap{position:relative}
-#instagram .ig-track{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
+#instagram .ig-track{display:flex;gap:6px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
 #instagram .ig-track::-webkit-scrollbar{display:none}
-#instagram .ig-card{position:relative;display:block;flex:0 0 calc((100% - 48px)/4);aspect-ratio:1;overflow:hidden;background:#161616;scroll-snap-align:start}
-@media (max-width:1023px){#instagram .ig-card{flex-basis:calc((100% - 32px)/3)}}
+#instagram .ig-card{position:relative;display:block;flex:0 0 calc((100% - 18px)/4);aspect-ratio:1;overflow:hidden;background:#161616;scroll-snap-align:start}
+@media (max-width:1023px){#instagram .ig-card{flex-basis:calc((100% - 12px)/3)}}
 @media (max-width:767px){#instagram .ig-card{flex-basis:80%}}
 #instagram .ig-card img{width:100%;height:100%;object-fit:cover;transition:transform .5s cubic-bezier(.16,.8,.24,1)}
 #instagram .ig-card:hover img{transform:scale(1.04)}
