@@ -41,16 +41,44 @@
 }
 
 /* Logo panel entrance, matching the service cards (/assets/service-cards.css):
-   a thin red line sweeps across the top of the black panel while the logo rises
-   in. The header is always on screen when a page opens, so this simply plays on
-   load with plain CSS; no scroll watching JavaScript is needed. */
+   a thin red line traces around the black panel (along the top, down the slant,
+   back along the bottom) and then fades, while the logo rises in. The header is
+   always on screen when a page opens, so this simply plays on load with plain
+   CSS; no scroll watching JavaScript is needed. */
 .site-header .site-logo img{animation:logo-rise .8s cubic-bezier(.16,.8,.24,1) .15s both}
+
 /* ::after is a second decorative box (::before is already the black panel). It
-   spans the panel's top edge, from the screen's left edge to the slant. */
-.site-header .site-logo::after{content:"";position:absolute;top:-18.5px;left:-100vw;right:0;height:2px;background:#c23b2c;transform-origin:left;pointer-events:none;animation:logo-sweep 1.3s cubic-bezier(.65,0,.35,1) both}
+   covers the same area as the panel, filled red, and clip-path (which shows only
+   the part of a box inside a shape) cuts it down to a 2px band hugging the
+   panel's top, slant and bottom edges. Animating that shape is what draws it.
+   Custom properties (--name values reused below): --s is the slant's width,
+   --t the line thickness, --ti how far the inner edge of the slanted band sits
+   in from the outer edge (slightly more than --t, since that edge is angled).
+   left: unlike the panel, this box starts just past the screen's left edge
+   instead of a whole screen width off it, so the line is visible from the
+   moment it starts. The logo sits (screen width - 1400px) / 2 in from the edge
+   on wide screens, plus the container's 24px side padding (40px from 768px
+   up); 20px extra puts the start safely off screen. */
+.site-header .site-logo::after{--s:44px;--t:2px;--ti:2.5px;content:"";position:absolute;top:-18.5px;bottom:-18.5px;left:calc(-1 * max(0px,(100vw - 1400px) / 2) - 44px);right:0;background:#c23b2c;pointer-events:none;animation:logo-trace 1.8s linear both}
+@media(min-width:48rem){.site-header .site-logo::after{left:calc(-1 * max(0px,(100vw - 1400px) / 2) - 60px)}}
+/* Desktop: match the panel's longer hang below the bar and its wider slant. */
+@media(min-width:64rem){.site-header .site-logo::after{--s:64px;bottom:-38.5px}}
 
 @keyframes logo-rise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
-@keyframes logo-sweep{0%{opacity:1;transform:scaleX(0)}60%{opacity:1;transform:scaleX(1)}100%{opacity:0;transform:scaleX(1)}}
+/* The band is an 8 point polygon: points 1 to 4 run along its outer edge (top
+   left, top right, slant bottom, bottom left) and 5 to 8 come back along its
+   inner edge. A polygon can only animate into another with the same number of
+   points, so the "unfinished" points are parked at the pen's position (the
+   line's moving tip) and move out along the path as it is drawn.
+   Each step's timing function applies until the next step: speed up along the
+   top, steady down the slant, ease to a stop along the bottom, then fade. */
+@keyframes logo-trace{
+  0%{opacity:1;animation-timing-function:cubic-bezier(.55,0,1,1);clip-path:polygon(0 0,0 0,0 0,0 0,0 var(--t),0 var(--t),0 var(--t),0 var(--t))}
+  35%{clip-path:polygon(0 0,100% 0,100% 0,100% 0,calc(100% - var(--ti)) var(--t),calc(100% - var(--ti)) var(--t),calc(100% - var(--ti)) var(--t),0 var(--t))}
+  50%{animation-timing-function:cubic-bezier(0,0,.35,1);clip-path:polygon(0 0,100% 0,calc(100% - var(--s)) 100%,calc(100% - var(--s)) 100%,calc(100% - var(--s) - var(--ti)) calc(100% - var(--t)),calc(100% - var(--s) - var(--ti)) calc(100% - var(--t)),calc(100% - var(--ti)) var(--t),0 var(--t))}
+  80%{opacity:1;clip-path:polygon(0 0,100% 0,calc(100% - var(--s)) 100%,0 100%,0 calc(100% - var(--t)),calc(100% - var(--s) - var(--ti)) calc(100% - var(--t)),calc(100% - var(--ti)) var(--t),0 var(--t))}
+  100%{opacity:0;clip-path:polygon(0 0,100% 0,calc(100% - var(--s)) 100%,0 100%,0 calc(100% - var(--t)),calc(100% - var(--s) - var(--ti)) calc(100% - var(--t)),calc(100% - var(--ti)) var(--t),0 var(--t))}
+}
 
 /* Visitors who ask their OS for less motion just see the logo, no animation. */
 @media (prefers-reduced-motion:reduce){.site-header .site-logo img{animation:none}.site-header .site-logo::after{display:none}}
