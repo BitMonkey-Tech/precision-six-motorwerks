@@ -1,0 +1,47 @@
+/* "Join the P6 Community" popup (contact page). Behaviour is in subscribe.js. */
+
+/* <dialog> is the browser's built in modal box. showModal() puts it on top of
+   the page, traps keyboard focus inside it, and closes it on Esc.
+   margin:auto re-centers it, since Tailwind's reset sets margin to 0. */
+.sub-dialog{margin:auto;width:min(920px,calc(100% - 32px));max-width:none;max-height:calc(100% - 32px);padding:0;border:1px solid rgba(255,255,255,.12);background:#131313;color:#ece9e4;overflow:auto}
+/* ::backdrop is the dimmed layer the browser draws behind a modal dialog. */
+.sub-dialog::backdrop{background:rgba(0,0,0,.72);backdrop-filter:blur(2px)}
+.sub-dialog[open]{animation:sub-in .35s ease-out}
+@keyframes sub-in{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.sub-dialog[open]{animation:none}}
+
+.sub-inner{display:grid;grid-template-columns:1fr}
+@media (min-width:768px){.sub-inner{grid-template-columns:1fr 1fr}}
+
+.sub-panel{position:relative;padding:0 32px 40px;overflow:hidden}
+/* Red racing stripes along the top, fading out downward like the reference. */
+.sub-stripes{height:84px;margin:0 -32px 8px;background:repeating-linear-gradient(-60deg,#c23b2c 0 16px,transparent 16px 34px);-webkit-mask-image:linear-gradient(to bottom,#000 10%,transparent);mask-image:linear-gradient(to bottom,#000 10%,transparent)}
+.sub-panel h2{font-size:clamp(32px,5vw,44px);line-height:1;text-align:center}
+.sub-lede{margin:14px auto 28px;max-width:300px;text-align:center;font-size:15px;line-height:1.5;color:#a29e97}
+
+.sub-form{display:flex;flex-direction:column;gap:14px}
+.sub-form input,.sub-form select{width:100%;background:#0c0c0d;border:1px solid rgba(255,255,255,.18);border-radius:2px;padding:14px 16px;color:#ece9e4;font-family:"Archivo",sans-serif;font-size:15px;outline:none;transition:border-color .15s ease}
+.sub-form input::placeholder{color:#6b6f78}
+.sub-form input:focus,.sub-form select:focus{border-color:#c23b2c}
+/* Grey "Car I drive" text until a real option is picked, like a placeholder. */
+.sub-form select:invalid{color:#6b6f78}
+.sub-form select{appearance:none;background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="8" viewBox="0 0 12 8"><path d="M1 1l5 5 5-5" stroke="%23a29e97" stroke-width="1.5" fill="none"/></svg>');background-repeat:no-repeat;background-position:right 16px center}
+.sub-form option{color:#ece9e4;background:#131313}
+.sub-form .submit-btn{align-self:stretch;margin-top:6px}
+.sub-form .form-status{margin-top:0;text-align:center}
+.sub-thanks{text-align:center;padding:24px 0}
+.sub-thanks p{margin-top:10px;color:#a29e97;font-size:15px}
+
+/* Photo side. On phones it becomes a short banner above the form. */
+.sub-photo{position:relative;order:-1;height:160px;background:#0c0c0d}
+@media (min-width:768px){.sub-photo{order:0;height:auto;min-height:540px}}
+.sub-photo .sub-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.sub-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,rgba(12,12,13,.65),transparent 45%)}
+.sub-photo .sub-logo{position:absolute;z-index:1;top:22px;left:50%;transform:translateX(-50%);height:34px;width:auto}
+@media (min-width:768px){.sub-photo .sub-logo{top:40px;height:44px}}
+
+.sub-close{position:absolute;z-index:2;top:10px;right:10px;width:40px;height:40px;display:grid;place-items:center;border:0;border-radius:50%;background:rgba(12,12,13,.6);color:#fff;cursor:pointer;transition:background-color .15s ease}
+.sub-close:hover{background:#c23b2c}
+.sub-close svg{width:20px;height:20px}
+/* Visually hidden but still read by screen readers (labels for the inputs). */
+.sub-dialog .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
