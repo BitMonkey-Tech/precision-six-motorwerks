@@ -59,7 +59,8 @@
 // browsers without IntersectionObserver, by just showing everything at once.
 (function(){
   // [data-reveal-card] is the service cards, styled in /assets/service-cards.css.
-  var els = document.querySelectorAll('[data-reveal], [data-reveal-card]');
+  // [data-reveal-bio] is the About page bios, styled in /assets/about.css.
+  var els = document.querySelectorAll('[data-reveal], [data-reveal-card], [data-reveal-bio]');
   if (!els.length) return;
 
   var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
