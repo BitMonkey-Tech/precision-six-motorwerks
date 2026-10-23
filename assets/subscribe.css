@@ -22,6 +22,9 @@
 .sub-form{display:flex;flex-direction:column;gap:14px}
 .sub-form input,.sub-form select{width:100%;background:#0c0c0d;border:1px solid rgba(255,255,255,.18);border-radius:2px;padding:14px 16px;color:#ece9e4;font-family:"Archivo",sans-serif;font-size:15px;outline:none;transition:border-color .15s ease}
 .sub-form input::placeholder{color:#6b6f78}
+/* First and last name share a row, except on narrow phones where they stack. */
+.sub-row{display:grid;grid-template-columns:1fr;gap:14px}
+@media (min-width:480px){.sub-row{grid-template-columns:1fr 1fr}}
 .sub-form input:focus,.sub-form select:focus{border-color:#c23b2c}
 /* Grey "Car I drive" text until a real option is picked, like a placeholder. */
 .sub-form select:invalid{color:#6b6f78}
