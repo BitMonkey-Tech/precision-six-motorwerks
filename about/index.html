@@ -8,7 +8,7 @@
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&amp;family=Archivo:ital,wght@0,400;0,500;1,700&amp;display=swap" data-precedence="default" />
-  <link rel="stylesheet" href="/assets/index-D637ba7w.css" type="text/css" data-precedence="default" /><link rel="stylesheet" href="/assets/header.css"/><link rel="stylesheet" href="/assets/carousel.css"/><link rel="stylesheet" href="/assets/about.css"/>
+  <link rel="stylesheet" href="/assets/index-D637ba7w.css" type="text/css" data-precedence="default" /><link rel="stylesheet" href="/assets/header.css"/><link rel="stylesheet" href="/assets/about.css"/>
   <link rel="stylesheet" href="/fonts/leotrace.css" />
   <title>About | Precision Six Motorwerks (P6) | Porsche Specialist in Fort Myers, FL</title>
   <meta name="description" content="Meet the team at Precision Six Motorwerks (P6), an independent Porsche specialist in Fort Myers, FL: founder Joe Russo and Porsche Certified Gold Technician Brendan." />
@@ -78,27 +78,50 @@
         <p class="text-sm leading-relaxed text-[#a29e97]" style="max-width:640px">Precision Six Motorwerks was founded in Fort Myers on a simple idea: give Porsche owners in Southwest Florida a knowledgeable, transparent, highly specialized alternative to the dealership, without losing the personal relationship that comes with an independent shop.</p>
       </div>
 
+      <!-- Bios. Each column is a photo carousel (driven by /assets/bio-carousel.js)
+           with the bio underneath. The photos are shop photos standing in until
+           there are photos of Joe and Brendan: to swap one, change its src and alt.
+           The first photo in each list shows first, and only it loads right away. -->
       <div class="bios grid grid-cols-1 md:grid-cols-2" style="margin-top:64px;padding-top:64px;border-top:2px solid #c23b2c">
-        <div data-reveal-bio>
-          <span class="bio-role font-display text-lg text-[#c23b2c]">FOUNDER</span>
-          <h2 class="bio-name mt-2 font-display text-2xl text-white sm:text-3xl">Joseph “Joe” Russo</h2>
-          <p class="mt-4 text-sm leading-relaxed text-[#a29e97]">Joe is a lifelong Porsche enthusiast with a decade of experience working at Porsche dealerships in SWFL. He worked in all facets of the industry from sales to financing and management.</p>
-          <p class="mt-4 text-sm leading-relaxed text-[#a29e97]">An avid track enthusiast, husband, and father of three, Joe envisioned more than a repair shop. He wanted to create a welcoming place where Porsche owners could connect, share their passion, and feel confident in the care their cars receive. Joe saw a need in our community for a Porsche only facility that offers a premier dealer alternative.</p>
+        <div class="bio-col">
+          <div class="bio-carousel" data-carousel data-reveal role="region" aria-roledescription="carousel" aria-label="Photos of Joe">
+            <div class="bc-slides">
+              <img src="/images/shop/shop-1.jpg" alt="Overhead view of the shop with a white Macan and a black 911 Cabriolet in the lift bays" />
+              <img src="/images/shop/shop-4.jpg" alt="Red Cayenne GTS in front of the Porsche crest on the shop wall" loading="lazy" />
+              <img src="/images/shop/shop-2.jpg" alt="Silver 911 GT3 beside the tire machine, with a 911 raised on a lift behind it" loading="lazy" />
+              <img src="/images/shop/shop-5.jpg" alt="Blue Macan raised on a lift, with a white Macan in the next bay" loading="lazy" />
+            </div>
+            <button type="button" class="bc-arrow bc-prev" aria-label="Previous photo"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button><button type="button" class="bc-arrow bc-next" aria-label="Next photo"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></button>
+            <div class="bc-dots"></div>
+          </div>
+          <div data-reveal-bio>
+            <span class="bio-role font-display text-lg text-[#c23b2c]">FOUNDER</span>
+            <h2 class="bio-name mt-2 font-display text-2xl text-white sm:text-3xl">Joseph “Joe” Russo</h2>
+            <p class="mt-4 text-sm leading-relaxed text-[#a29e97]">Joe is a lifelong Porsche enthusiast with a decade of experience working at Porsche dealerships in SWFL. He worked in all facets of the industry from sales to financing and management.</p>
+            <p class="mt-4 text-sm leading-relaxed text-[#a29e97]">An avid track enthusiast, husband, and father of three, Joe envisioned more than a repair shop. He wanted to create a welcoming place where Porsche owners could connect, share their passion, and feel confident in the care their cars receive. Joe saw a need in our community for a Porsche only facility that offers a premier dealer alternative.</p>
+          </div>
         </div>
-        <div data-reveal-bio>
-          <span class="bio-role font-display text-lg text-[#c23b2c]">PORSCHE CERTIFIED GOLD TECHNICIAN</span>
-          <h2 class="bio-name mt-2 font-display text-2xl text-white sm:text-3xl">Brendan</h2>
-          <p class="mt-4 text-sm leading-relaxed text-[#a29e97]">Brendan brings nearly a decade of hands on Porsche experience to Precision Six Motorwerks in Fort Myers, backed by extensive factory training, certifications, and a genuine passion for the marque. He achieved Porsche Certified Gold Technician status, representing the highest level of technical training, diagnostic ability, and experience within the brand.</p>
-          <p class="mt-4 text-sm leading-relaxed text-[#a29e97]">Over the course of his career, he has worked extensively with Porsche vehicles ranging from classic air cooled models to the latest generations of high performance road cars. His experience includes advanced diagnostics, mechanical repair, drivetrain and transmission work, and performance focused service.</p>
-          <p class="mt-4 text-sm leading-relaxed text-[#a29e97]">Beyond the dealership environment, Brendan has remained closely involved with the Porsche and motorsports community throughout Southwest Florida. His involvement with local Porsche enthusiasts, motorsports events, and track focused vehicles has given him the opportunity to work with owners who care just as much about their cars as he does.</p>
-          <p class="mt-4 text-sm leading-relaxed text-[#a29e97]">For Brendan, Porsche has never simply been a brand he works on. It has been a major part of his life. From learning to drive a manual transmission in a 993 Turbo to building a career around the cars, Precision Six Motorwerks is the next chapter of that passion.</p>
+        <div class="bio-col">
+          <div class="bio-carousel" data-carousel data-reveal role="region" aria-roledescription="carousel" aria-label="Photos of Brendan">
+            <div class="bc-slides">
+              <img src="/images/shop/shop-7.jpg" alt="Technician using a mechanic&#39;s stethoscope to listen to the engine of a black Panamera" />
+              <img src="/images/shop/shop-8.jpg" alt="Black Panamera raised on a lift with its hood open while a technician drains the oil" loading="lazy" />
+              <img src="/images/shop/shop-3.jpg" alt="Grey 911 Carrera parked under a blue two post lift" loading="lazy" />
+              <img src="/images/shop/shop-6.jpg" alt="Black Panamera under a lift, beneath a painting of a Porsche race car" loading="lazy" />
+            </div>
+            <button type="button" class="bc-arrow bc-prev" aria-label="Previous photo"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button><button type="button" class="bc-arrow bc-next" aria-label="Next photo"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></button>
+            <div class="bc-dots"></div>
+          </div>
+          <div data-reveal-bio>
+            <span class="bio-role font-display text-lg text-[#c23b2c]">PORSCHE CERTIFIED GOLD TECHNICIAN</span>
+            <h2 class="bio-name mt-2 font-display text-2xl text-white sm:text-3xl">Brendan</h2>
+            <p class="mt-4 text-sm leading-relaxed text-[#a29e97]">Brendan brings nearly a decade of hands on Porsche experience to Precision Six Motorwerks in Fort Myers, backed by extensive factory training, certifications, and a genuine passion for the marque. He achieved Porsche Certified Gold Technician status, representing the highest level of technical training, diagnostic ability, and experience within the brand.</p>
+            <p class="mt-4 text-sm leading-relaxed text-[#a29e97]">Over the course of his career, he has worked extensively with Porsche vehicles ranging from classic air cooled models to the latest generations of high performance road cars. His experience includes advanced diagnostics, mechanical repair, drivetrain and transmission work, and performance focused service.</p>
+            <p class="mt-4 text-sm leading-relaxed text-[#a29e97]">Beyond the dealership environment, Brendan has remained closely involved with the Porsche and motorsports community throughout Southwest Florida. His involvement with local Porsche enthusiasts, motorsports events, and track focused vehicles has given him the opportunity to work with owners who care just as much about their cars as he does.</p>
+            <p class="mt-4 text-sm leading-relaxed text-[#a29e97]">For Brendan, Porsche has never simply been a brand he works on. It has been a major part of his life. From learning to drive a manual transmission in a 993 Turbo to building a career around the cars, Precision Six Motorwerks is the next chapter of that passion.</p>
+          </div>
         </div>
       </div>
-
-      <!-- Photo carousel: the same one as the other pages. /assets/instagram.js
-           fills the empty track with shop photos (or Instagram posts once its feed ID is set)
-           and keeps it hidden until it has cards to show. -->
-      <div id="instagram" role="region" aria-label="Photos from the shop" style="margin-top:64px;padding-top:64px;border-top:1px solid rgba(255,255,255,0.1)"><div class="ig-wrap"><div class="ig-track"></div><button type="button" class="ig-arrow ig-prev" aria-label="Previous photos"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button><button type="button" class="ig-arrow ig-next" aria-label="Next photos"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></button></div></div>
 
       <div class="border-t border-white/10" style="margin-top:64px;padding-top:64px">
         <a href="/contact#schedule" class="inline-block bg-[#c23b2c] px-9 py-4 font-label text-sm tracking-[0.22em] text-white transition-colors hover:bg-[#a6301f]">SCHEDULE APPOINTMENT</a>
@@ -126,8 +149,8 @@
 </div>
 <!-- Shared vanilla script: runs the mobile menu toggle, nav highlighting, and the reveal animations. -->
 <script src="/assets/site.js"></script>
-  <!-- Fills the photo carousel above. defer runs it after the page has been parsed. -->
-  <script src="/assets/instagram.js" defer></script>
+  <!-- Runs the two bio photo carousels. defer runs it after the page has been parsed. -->
+  <script src="/assets/bio-carousel.js" defer></script>
 
 <!-- Structured data (JSON-LD): machine-readable facts about the business and
      its people, in a vocabulary called schema.org. Kept identical to the copy
