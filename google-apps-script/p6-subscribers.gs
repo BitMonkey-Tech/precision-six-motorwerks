@@ -23,7 +23,8 @@
  */
 
 const SHEET_NAME = 'Subscribers';
-const HEADERS = ['Signed up', 'First name', 'Email', 'Car', 'Page'];
+const HEADERS = ['Signed up', 'First name', 'Last name', 'Email', 'Car', 'Page'];
+const EMAIL_COLUMN = 4; // column D, used to spot repeat signups
 
 // Run once by hand (step 4) to name the tab and add the header row.
 function setup() {
@@ -54,13 +55,14 @@ function doPost(e) {
     // Skip emails that are already on the list so nobody is added twice.
     const last = sheet.getLastRow();
     if (last > 1) {
-      const existing = sheet.getRange(2, 3, last - 1, 1).getValues().flat();
+      const existing = sheet.getRange(2, EMAIL_COLUMN, last - 1, 1).getValues().flat();
       if (existing.indexOf(email) !== -1) return json({ ok: true, duplicate: true });
     }
 
     sheet.appendRow([
       new Date(),
       clean(p['first-name']),
+      clean(p['last-name']),
       email,
       clean(p.car),
       clean(p.page),
