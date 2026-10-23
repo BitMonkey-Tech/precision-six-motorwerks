@@ -127,15 +127,28 @@
         </div>
       </div>
 
-      <!-- Our Shop: what customers can do while they wait. Four amenity cards in
-           a grid (1 column on phones, 2 on tablets, 4 on desktop); the grid and
-           the staggered fade in are set in /assets/about.css under "Our Shop".
-           Icons are inline SVGs, aria-hidden because the heading under each one
-           already says what it is. -->
+      <!-- Our Shop: what customers can do while they wait. A carousel of lobby
+           photos on the left (the same component as the bios, so
+           /assets/bio-carousel.js runs it with no changes) and the amenity cards
+           on the right; on phones they stack. Layout lives in /assets/about.css
+           under "Our Shop". Icons are inline SVGs, aria-hidden because the
+           heading under each one already says what it is. -->
       <div class="shop border-t border-white/10" style="margin-top:64px;padding-top:64px">
         <h2 class="font-label text-3xl text-white sm:text-4xl tracking-[0.04em]" data-reveal style="font-style:italic">OUR SHOP</h2>
         <p class="mt-2 max-w-sm text-sm leading-relaxed text-[#c23b2c]" data-reveal="1">Make yourself at home while we work.</p>
-        <p class="mt-4 text-sm leading-relaxed text-[#a29e97]" style="max-width:640px" data-reveal="2">You are always welcome to stay while your Porsche is in our care. Our customer lounge is a comfortable place to pass the time, so waiting on your car feels less like an errand and more like a visit.</p>
+        <div class="shop-layout">
+        <div class="bio-carousel" data-carousel data-reveal role="region" aria-roledescription="carousel" aria-label="Photos of the customer lounge">
+          <div class="bc-slides">
+            <img src="/images/shop/shop-16.jpg" alt="Wide view of the lobby from the front desk, with the racing simulator, lounge seating, and a TV on the back wall" loading="lazy" />
+            <img src="/images/shop/shop-15.jpg" alt="Coffee bar with an espresso machine, a drinks fridge, and a Porsche Museum cookbook, under Martini stripe Porsche art" loading="lazy" />
+            <img src="/images/shop/shop-14.jpg" alt="Customer lounge with a racing simulator, model cars on the shelves, and the front desk laptop showing the Precision Six logo" loading="lazy" />
+            <img src="/images/shop/shop-13.jpg" alt="Precision Six Motorwerks sign on the grey lobby wall, beside the coffee bar and waiting area" loading="lazy" />
+          </div>
+          <button type="button" class="bc-arrow bc-prev" aria-label="Previous photo"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button><button type="button" class="bc-arrow bc-next" aria-label="Next photo"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></button>
+          <div class="bc-dots"></div>
+        </div>
+        <div>
+        <p class="text-sm leading-relaxed text-[#a29e97]" data-reveal="2">You are always welcome to stay while your Porsche is in our care. Our customer lounge is a comfortable place to pass the time, so waiting on your car feels less like an errand and more like a visit.</p>
         <ul class="shop-amenities">
           <li data-reveal>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 11V7a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v4"/><path d="M3 13a2 2 0 0 1 4 0v2h10v-2a2 2 0 0 1 4 0v4a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/><path d="M6 18v2M18 18v2"/></svg>
@@ -158,6 +171,8 @@
             <p class="text-sm leading-relaxed text-[#a29e97]">Take a seat in our sim racer and put in a few laps while you wait.</p>
           </li>
         </ul>
+        </div>
+        </div>
       </div>
 
       <div class="border-t border-white/10" style="margin-top:64px;padding-top:64px">

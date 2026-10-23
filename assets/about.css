@@ -80,12 +80,18 @@
 .bc-dots button:hover{background-color:rgba(255,255,255,.45)}
 .bc-dots button[aria-current]{background-color:#c23b2c}
 
-/* Our Shop. The amenity grid is written here instead of with Tailwind classes
-   because the compiled Tailwind CSS has no sm:grid-cols-2 or lg:grid-cols-4.
-   Each card gets a thin red rule on top, echoing the red line above the bios. */
-.shop-amenities{display:grid;grid-template-columns:1fr;gap:40px;margin-top:48px;padding:0;list-style:none}
+/* Our Shop. Written here instead of with Tailwind classes because the compiled
+   Tailwind CSS only has the grid and gap classes the original app used.
+   .shop-layout puts the lounge photo carousel beside the text from 1024px up,
+   and stacks them on smaller screens. The carousel drops the bios' bottom
+   margin since the grid gap already spaces it. */
+.shop-layout{display:grid;grid-template-columns:1fr;gap:40px;margin-top:48px;align-items:start}
+@media (min-width:1024px){.shop-layout{grid-template-columns:1fr 1fr;gap:64px}}
+.shop-layout .bio-carousel{margin-bottom:0}
+/* Amenity cards: 1 column on phones, 2 (a 2x2 block) from 640px up. Each card
+   gets a thin red rule on top, echoing the red line above the bios. */
+.shop-amenities{display:grid;grid-template-columns:1fr;gap:32px;margin-top:40px;padding:0;list-style:none}
 @media (min-width:640px){.shop-amenities{grid-template-columns:repeat(2,1fr)}}
-@media (min-width:1024px){.shop-amenities{grid-template-columns:repeat(4,1fr);gap:32px}}
 .shop-amenities li{padding-top:20px;border-top:2px solid #c23b2c}
 .shop-amenities svg{width:32px;height:32px;color:#c23b2c}
 .shop-amenities h3{margin-top:16px;letter-spacing:.14em}
