@@ -46,9 +46,39 @@
 [data-reveal-bio] p:nth-of-type(3){--p-delay:.85s}
 [data-reveal-bio] p:nth-of-type(4){--p-delay:1s}
 
-/* Two columns from 768px up: start the right hand bio a beat after the left.
-   On phones each bio scrolls in on its own, so no delay is needed. */
-@media (min-width:768px){[data-reveal-bio]:nth-child(2){--bio-delay:.25s}}
+/* Two columns from 768px up: start the right hand column (its photos and bio)
+   a beat after the left. On phones each column scrolls in on its own, so no
+   delay is needed. */
+@media (min-width:768px){
+  .bio-col:nth-child(2) [data-reveal-bio]{--bio-delay:.25s}
+  .bio-col:nth-child(2) .bio-carousel{transition-delay:.15s}
+}
+
+/* Bio photo carousels, run by /assets/bio-carousel.js. The photos are stacked
+   on top of each other in a 4:3 box; only the one with .is-active is visible,
+   and switching fades the old one out while the new one fades in. */
+.bio-carousel{position:relative;margin-bottom:40px}
+.bc-slides{position:relative;aspect-ratio:4/3;overflow:hidden;background:#161616}
+/* object-fit:cover fills the box and crops the edges, so photos of any shape fit.
+   Each one starts zoomed in a touch and slowly eases back while it's showing,
+   a gentle "Ken Burns" drift that keeps the photo from feeling static. */
+.bc-slides img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.06);transition:opacity .9s ease,transform 6s linear}
+.bc-slides img.is-active{opacity:1;transform:scale(1)}
+
+/* Arrows: the same square buttons as the shop carousel, over the photo's sides. */
+.bc-arrow{position:absolute;top:calc(50% - 12px);width:44px;height:44px;display:grid;place-items:center;transform:translateY(-50%);border:1px solid rgba(255,255,255,.15);background:rgba(12,12,13,.8);color:#ece9e4;cursor:pointer;transition:background-color .2s,border-color .2s}
+.bc-prev{left:12px}
+.bc-next{right:12px}
+.bc-arrow:hover{background:#c23b2c;border-color:#c23b2c}
+.bc-arrow:focus-visible,.bc-dots button:focus-visible{outline:2px solid #c23b2c;outline-offset:2px}
+
+/* Dots, drawn as short bars to echo the red lines elsewhere on the page.
+   The visible bar is 3px tall, but the button is 24px tall (padding plus
+   background-clip) so it's easy to hit with a finger. */
+.bc-dots{display:flex;gap:8px;margin-top:4px}
+.bc-dots button{width:28px;height:24px;padding:10px 0;border:0;background:rgba(255,255,255,.2);background-clip:content-box;cursor:pointer;transition:background-color .3s}
+.bc-dots button:hover{background-color:rgba(255,255,255,.45)}
+.bc-dots button[aria-current]{background-color:#c23b2c}
 
 /* `both` in the animations above keeps the start frame applied during the
    delay and the end frame once it finishes, so nothing flashes or snaps back. */
@@ -63,4 +93,5 @@
   [data-reveal-bio] .bio-role,[data-reveal-bio] p,[data-reveal-bio].is-visible .bio-role,[data-reveal-bio].is-visible p{opacity:1;animation:none}
   [data-reveal-bio] .bio-name,[data-reveal-bio].is-visible .bio-name{clip-path:none;animation:none}
   [data-reveal-bio]::before,[data-reveal-bio].is-visible::before{transform:none;animation:none}
+  .bc-slides img{transform:none;transition:none}
 }
