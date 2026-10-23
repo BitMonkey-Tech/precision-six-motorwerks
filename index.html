@@ -8,6 +8,8 @@
 #about p,#about blockquote{font-size:1rem}
 /* Hero photo: on laptop widths and up, start the photo 28% in from the left and anchor it to its left edge so the car sits clear of the headline, and fade its left edge to transparent so it melts into the dark background with no visible seam. */
 @media (min-width:1024px){.hero-photo{margin-left:28%;width:72%;object-position:0% 50%;-webkit-mask-image:linear-gradient(to right,transparent,#000 30%);mask-image:linear-gradient(to right,transparent,#000 30%)}}
+/* On phones, slide the photo 25% of the screen width to the right (the section clips whatever runs off the right edge) and fade the new left edge the same way. */
+@media (max-width:767px){.hero-photo{transform:translateX(25%);-webkit-mask-image:linear-gradient(to right,transparent,#000 30%);mask-image:linear-gradient(to right,transparent,#000 30%)}}
 /* Instagram carousel (#instagram, filled by /assets/instagram.js). Hidden until posts load. The track is a horizontal row that scrolls and snaps card by card; the arrows sit over its left and right edges. */
 #instagram{display:none}
 #instagram.has-posts{display:block}
