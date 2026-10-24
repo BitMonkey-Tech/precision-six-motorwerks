@@ -12,6 +12,14 @@
 [data-reveal="1"]{transition-delay:.1s}
 [data-reveal="2"]{transition-delay:.2s}
 
+/* OUR SHOP heading size. Its text-3xl / sm:text-4xl classes aren't in the
+   compiled Tailwind CSS (the build only kept classes the original app used),
+   so they did nothing and it fell back to 16px. These rules do what those
+   classes would: 30px on phones, 36px from 640px wide up. The var() values
+   are Tailwind's own size settings, so it stays in step with the theme. */
+.shop h2{font-size:var(--text-3xl);line-height:var(--text-3xl--line-height)}
+@media (min-width:40rem){.shop h2{font-size:var(--text-4xl);line-height:var(--text-4xl--line-height)}}
+
 /* Bios. Each one plays in four steps once it scrolls into view:
    1. a red line draws down its left edge,
    2. the role label fades in while its letter spacing tightens,

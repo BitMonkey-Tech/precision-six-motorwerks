@@ -1,0 +1,12 @@
+/* Extra strong slant for the big Oswald headings. Oswald has no real italic,
+   so font-style:italic only gets the browser's fake italic, which is stuck at
+   about 14 degrees. skewX tilts the letters by any angle we want; negative
+   leans them to the right.
+   Each word is its own span so it tilts around its own center. Skewing the
+   whole heading at once would push the top line right and the bottom line
+   left on headings that wrap. Spans also keep this off the heading itself,
+   whose transform the scroll reveal animation already uses.
+   inline-block is needed because transforms don't apply to plain inline text.
+   font-weight 700 is one step heavier than the 600 these headings had, and
+   the heaviest Oswald weight the Google Fonts link loads. */
+.slant{display:inline-block;transform:skewX(-20deg);font-weight:700}
