@@ -24,3 +24,16 @@
 /* The & in service titles was set in Archivo because LeoTrace's own & looked
    off. Oswald's & is fine, so it now just matches the rest of the title. */
 .slant .amp{font-family:inherit;font-style:inherit;font-weight:inherit}
+
+/* Logo style P. /assets/site.js wraps every visible uppercase P set in Oswald
+   in <span class="logo-p">. The real letter stays in the page (so copy/paste,
+   search engines and screen readers still see a P) but is made invisible with
+   text-fill-color, which leaves `color` alone so currentColor still works.
+   The ::before box then draws /images/logo-p.svg in that color on top: a P
+   drawn at Oswald's own size and stroke weight, with the logo P's flat top,
+   rounded right side and open left side.
+   The em values come from Oswald's measurements: the letter sits .289em
+   above the bottom of the text box (the font's descent), is .81em tall
+   (cap height) and .485em wide, starting .06em in from the left. */
+.logo-p{position:relative;-webkit-text-fill-color:transparent}
+.logo-p::before{content:"";position:absolute;left:.06em;bottom:.289em;width:.485em;height:.81em;background:currentColor;-webkit-mask:url(/images/logo-p.svg) no-repeat center/100% 100%;mask:url(/images/logo-p.svg) no-repeat center/100% 100%}

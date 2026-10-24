@@ -80,3 +80,41 @@
 
   els.forEach(function(el){ observer.observe(el); });
 })();
+
+// Logo style P: wraps each visible uppercase P in Oswald text in
+// <span class="logo-p"> so /assets/slant.css can draw the logo's P shape over
+// it. "Visible" includes a lowercase p inside text that CSS turns uppercase
+// (text-transform:uppercase), since that still shows on screen as a P.
+// Runs from here rather than being written into the HTML so new copy picks
+// it up automatically.
+(function(){
+  var skip = { SCRIPT: 1, STYLE: 1, TEXTAREA: 1, OPTION: 1, TITLE: 1, NOSCRIPT: 1 };
+  var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+  var targets = [];
+  while (walker.nextNode()) {
+    var node = walker.currentNode, parent = node.parentElement;
+    if (!parent || skip[parent.tagName] || parent.closest('svg, .logo-p')) continue;
+    if (!/p/i.test(node.data)) continue;
+    var style = getComputedStyle(parent);
+    if (style.fontFamily.indexOf('Oswald') !== 0) continue;
+    var pattern = style.textTransform === 'uppercase' ? /([pP])/ : /(P)/;
+    if (pattern.test(node.data)) targets.push([node, pattern]);
+  }
+  // Swapped in a second pass because changing the page while the walker is
+  // still moving through it would make it skip or revisit text.
+  targets.forEach(function(t){
+    var frag = document.createDocumentFragment();
+    t[0].data.split(t[1]).forEach(function(part, i){
+      if (!part) return;
+      if (i % 2) {
+        var span = document.createElement('span');
+        span.className = 'logo-p';
+        span.textContent = part;
+        frag.appendChild(span);
+      } else {
+        frag.appendChild(document.createTextNode(part));
+      }
+    });
+    t[0].parentNode.replaceChild(frag, t[0]);
+  });
+})();
