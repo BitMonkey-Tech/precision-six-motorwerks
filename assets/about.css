@@ -12,6 +12,14 @@
 [data-reveal="1"]{transition-delay:.1s}
 [data-reveal="2"]{transition-delay:.2s}
 
+/* OUR SHOP heading size. Its text-3xl / sm:text-4xl classes aren't in the
+   compiled Tailwind CSS (the build only kept classes the original app used),
+   so they did nothing and it fell back to 16px. These rules do what those
+   classes would: 30px on phones, 36px from 640px wide up. The var() values
+   are Tailwind's own size settings, so it stays in step with the theme. */
+.shop h2{font-size:var(--text-3xl);line-height:var(--text-3xl--line-height)}
+@media (min-width:40rem){.shop h2{font-size:var(--text-4xl);line-height:var(--text-4xl--line-height)}}
+
 /* Bios. Each one plays in four steps once it scrolls into view:
    1. a red line draws down its left edge,
    2. the role label fades in while its letter spacing tightens,
@@ -80,11 +88,34 @@
 .bc-dots button:hover{background-color:rgba(255,255,255,.45)}
 .bc-dots button[aria-current]{background-color:#c23b2c}
 
+/* Our Shop. Written here instead of with Tailwind classes because the compiled
+   Tailwind CSS only has the grid and gap classes the original app used.
+   .shop-layout puts the lounge photo carousel beside the text from 1024px up,
+   and stacks them on smaller screens. The carousel drops the bios' bottom
+   margin since the grid gap already spaces it. */
+.shop-layout{display:grid;grid-template-columns:1fr;gap:40px;margin-top:48px;align-items:start}
+@media (min-width:1024px){.shop-layout{grid-template-columns:1fr 1fr;gap:64px}}
+.shop-layout .bio-carousel{margin-bottom:0}
+/* Amenity cards: 1 column on phones, 2 (a 2x2 block) from 640px up. Each card
+   gets a thin red rule on top, echoing the red line above the bios. */
+.shop-amenities{display:grid;grid-template-columns:1fr;gap:32px;margin-top:40px;padding:0;list-style:none}
+@media (min-width:640px){.shop-amenities{grid-template-columns:repeat(2,1fr)}}
+.shop-amenities li{padding-top:20px;border-top:2px solid #c23b2c}
+.shop-amenities svg{width:32px;height:32px;color:#c23b2c}
+.shop-amenities h3{margin-top:16px;letter-spacing:.14em}
+.shop-amenities p{margin-top:8px}
+/* Cards fade up one after another rather than all at once. */
+.shop-amenities li:nth-child(2){transition-delay:.1s}
+.shop-amenities li:nth-child(3){transition-delay:.2s}
+.shop-amenities li:nth-child(4){transition-delay:.3s}
+
 /* `both` in the animations above keeps the start frame applied during the
    delay and the end frame once it finishes, so nothing flashes or snaps back. */
 @keyframes bio-line{from{transform:scaleY(0)}to{transform:scaleY(1)}}
 @keyframes bio-track{from{opacity:0;letter-spacing:.35em}to{opacity:1;letter-spacing:normal}}
-@keyframes bio-wipe{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+/* The end state uses negative left and right insets to give the slanted letters room: skewed
+   words poke a little past the name's box, and inset(0) would shave them off. */
+@keyframes bio-wipe{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 -.5em 0 -.5em)}}
 @keyframes bio-rise{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
 
 /* Visitors who ask their OS for less motion just see everything, no animation. */
