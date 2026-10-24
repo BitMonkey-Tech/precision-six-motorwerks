@@ -1,0 +1,23 @@
+/* Body copy sizes, each 2px larger than the original build.
+   Linked last on every page so these rules win over the earlier stylesheets.
+   Original size is noted in each comment. Labels, headings, buttons and form
+   fields are left alone; this only covers Archivo paragraph text. */
+
+/* Small paragraphs (Tailwind text-sm), footer address/hours and email: 14px */
+p.text-sm,footer a.text-sm,.faq-item p{font-size:16px}
+
+/* Larger paragraphs (Tailwind text-lg), contact page address and phone: 18px */
+p.text-lg:not(.font-label){font-size:20px}
+
+/* Home about section, about page, and home service cards on wider screens: 16px.
+   Service cards stay at the small size above on phones, as in the original. */
+#about p,.about-page p{font-size:18px}
+@media (min-width:640px){.svc-list p{font-size:18px}}
+
+/* Services page rows: 16px on phones, 17px from 640px up */
+.service-row-text>p{font-size:18px}
+@media (min-width:640px){.service-row-text>p{font-size:19px}}
+
+/* Newsletter signup panel (subscribe.css): 15px intro and thank you, 14px status */
+.sub-lede,.sub-thanks p{font-size:17px}
+.sub-form .form-status{font-size:16px}
