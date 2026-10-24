@@ -10,3 +10,17 @@
    font-weight 700 is one step heavier than the 600 these headings had, and
    the heaviest Oswald weight the Google Fonts link loads. */
 .slant{display:inline-block;transform:skewX(-20deg);font-weight:700}
+
+/* LeoTrace is retired in favor of this slanted Oswald look. Everything with
+   the font-display class (service titles, bio names, contact headings, the
+   newsletter popup) now gets Oswald instead. Pointing the --font-display
+   setting at --font-label swaps the font everywhere that uses it.
+   font-style:normal turns off the browser's fake italic, because the .slant
+   spans inside these elements already do the tilting; both together would
+   lean too far. */
+:root{--font-display:var(--font-label)}
+.font-display{font-style:normal}
+
+/* The & in service titles was set in Archivo because LeoTrace's own & looked
+   off. Oswald's & is fine, so it now just matches the rest of the title. */
+.slant .amp{font-family:inherit;font-style:inherit;font-weight:inherit}

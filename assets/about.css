@@ -113,7 +113,9 @@
    delay and the end frame once it finishes, so nothing flashes or snaps back. */
 @keyframes bio-line{from{transform:scaleY(0)}to{transform:scaleY(1)}}
 @keyframes bio-track{from{opacity:0;letter-spacing:.35em}to{opacity:1;letter-spacing:normal}}
-@keyframes bio-wipe{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+/* The end state uses negative left and right insets to give the slanted letters room: skewed
+   words poke a little past the name's box, and inset(0) would shave them off. */
+@keyframes bio-wipe{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 -.5em 0 -.5em)}}
 @keyframes bio-rise{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
 
 /* Visitors who ask their OS for less motion just see everything, no animation. */
