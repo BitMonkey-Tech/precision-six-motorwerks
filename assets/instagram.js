@@ -13,6 +13,8 @@
   // JPEG (about 900px on its long side) in /images/shop/ and add a line here.
   // alt describes the photo for screen readers.
   var SHOP_PHOTOS = [
+    { src: '/images/shop/shop-17.jpg', alt: 'Overhead view of a red 911 Carrera and a red 737 race car between two blue lifts in the shop' },
+    { src: '/images/shop/shop-18.jpg', alt: 'Red 911 Carrera and a winged red 737 race car seen from the top of the shop stairs' },
     { src: '/images/shop/shop-9.jpg', alt: 'Grey 911 Carrera with Carrera side script raised on a blue two post lift' },
     { src: '/images/shop/shop-10.jpg', alt: 'Black 911 Cabriolet in the front bay, with a grey 911 raised on a lift behind it' },
     { src: '/images/shop/shop-11.jpg', alt: 'Silver 911 GT3 in front of a lift holding a black 911 Cabriolet above a white 911 GT3' },
