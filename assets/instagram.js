@@ -14,12 +14,12 @@
   // alt describes the photo for screen readers.
   var SHOP_PHOTOS = [
     { src: '/images/shop/shop-17.jpg', alt: 'Overhead view of a red 911 Carrera and a red 737 race car between two blue lifts in the shop' },
-    { src: '/images/shop/shop-18.jpg', alt: 'Red 911 Carrera and a winged red 737 race car seen from the top of the shop stairs' },
     { src: '/images/shop/shop-9.jpg', alt: 'Grey 911 Carrera with Carrera side script raised on a blue two post lift' },
     { src: '/images/shop/shop-10.jpg', alt: 'Black 911 Cabriolet in the front bay, with a grey 911 raised on a lift behind it' },
     { src: '/images/shop/shop-11.jpg', alt: 'Silver 911 GT3 in front of a lift holding a black 911 Cabriolet above a white 911 GT3' },
     { src: '/images/shop/shop-12.jpg', alt: 'White Macan GTS beside a blue lift, in front of the red stripe on the shop wall' },
     { src: '/images/shop/shop-1.jpg', alt: 'Overhead view of the shop with a white Macan and a black 911 Cabriolet in the lift bays' },
+    { src: '/images/shop/shop-18.jpg', alt: 'Red 911 Carrera and a winged red 737 race car seen from the top of the shop stairs' },
     { src: '/images/shop/shop-2.jpg', alt: 'Silver 911 GT3 beside the tire machine, with a 911 raised on a lift behind it' },
     { src: '/images/shop/shop-3.jpg', alt: 'Grey 911 Carrera parked under a blue two post lift' },
     { src: '/images/shop/shop-4.jpg', alt: 'Red Cayenne GTS in front of the Porsche crest on the shop wall' },
