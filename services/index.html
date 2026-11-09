@@ -140,7 +140,8 @@
   </section>
 
   <!-- Retail partners banner: brands P6 is a certified retailer for. To add a
-       brand, drop its logo in /images/partners/ and copy one <img> line below.
+       brand, crop its logo tight (no empty margin), drop it in /images/partners/
+       and copy one <img> line below.
        The flex row wraps onto extra lines on narrow (phone) screens.
        Grey band (#131313, the same grey as the services section) whose soft grey
        glow comes from its top and bottom borders: two linear-gradients start as
@@ -152,9 +153,10 @@
       <h2 id="partners-heading" class="mt-4 font-display text-2xl text-white sm:text-3xl"><span class="slant">Proud</span> <span class="slant">Certified</span> <span class="slant">Retailer</span></h2>
       <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:48px;margin-top:40px">
         <!-- target="_blank" opens the partner site in a new tab; rel="noopener" stops that tab from controlling this page -->
-        <!-- Track Prep Performance: its PNG has empty transparent margin around the mark, so it's sized up a little to match the others visually -->
-        <a href="https://trackprepperformance.com/" target="_blank" rel="noopener" aria-label="Track Prep Performance (opens in a new tab)"><img src="/images/partners/track-prep-performance.png" alt="Track Prep Performance" width="512" height="177" loading="lazy" style="height:64px;width:auto;display:block" /></a>
-        <a href="https://giacusa.com/" target="_blank" rel="noopener" aria-label="GIAC (opens in a new tab)"><img src="/images/partners/giac.png" alt="GIAC" width="100" height="52" loading="lazy" style="height:68px;width:auto;display:block" /></a>
+        <!-- Even spacing: every logo file is cropped tight to its visible edges (no empty margin baked into the image),
+             so the 48px flex gap above is the real visible gap between every pair. Keep new logos cropped the same way. -->
+        <a href="https://trackprepperformance.com/" target="_blank" rel="noopener" aria-label="Track Prep Performance (opens in a new tab)"><img src="/images/partners/track-prep-performance.png" alt="Track Prep Performance" width="445" height="116" loading="lazy" style="height:42px;width:auto;display:block" /></a>
+        <a href="https://giacusa.com/" target="_blank" rel="noopener" aria-label="GIAC (opens in a new tab)"><img src="/images/partners/giac.png" alt="GIAC" width="82" height="34" loading="lazy" style="height:44px;width:auto;display:block" /></a>
         <!-- Each logo gets its own height so they look about the same visual size: the square SOUL mark runs taller, the wide Flat 6 wordmark shorter -->
         <a href="https://soulpp.com/" target="_blank" rel="noopener" aria-label="SOUL Performance Products (opens in a new tab)"><img src="/images/partners/soul.png" alt="SOUL Performance Products" width="266" height="240" loading="lazy" style="height:84px;width:auto;display:block" /></a>
         <a href="https://flat6motorsports.com/" target="_blank" rel="noopener" aria-label="Flat 6 Motorsports (opens in a new tab)"><img src="/images/partners/flat6-motorsports.png" alt="Flat 6 Motorsports" width="616" height="160" loading="lazy" style="height:52px;width:auto;display:block" /></a>
