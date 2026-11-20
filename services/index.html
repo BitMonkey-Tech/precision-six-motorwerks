@@ -32,7 +32,7 @@
   <meta name="twitter:image" content="https://images.unsplash.com/photo-1658863567540-b8d86757bdf1?flip=h&amp;q=80&amp;w=1200&amp;h=630&amp;fit=crop&amp;auto=format" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
-<link rel="stylesheet" href="/assets/body-text.css"/></head>
+<link rel="stylesheet" href="/assets/body-text.css"/><link rel="stylesheet" href="/assets/carousel.css"/></head>
 <body>
 <div class="bg-[#0c0c0d] text-[#ece9e4] font-body">
 
@@ -171,6 +171,9 @@
     </div>
   </section>
 
+  <!-- Photo carousel: the track starts empty and /assets/instagram.js fills it with shop photos (or Instagram posts once its feed ID is set). Same section as on the home and contact pages. -->
+  <section id="instagram" role="region" aria-label="Photos from the shop" class="border-t border-white/10 bg-[#131313]"><div class="mx-auto max-w-[1400px] px-6 py-24 md:px-10"><div class="ig-wrap"><div class="ig-track"></div><button type="button" class="ig-arrow ig-prev" aria-label="Previous photos"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button><button type="button" class="ig-arrow ig-next" aria-label="Next photos"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></button></div></div></section>
+
   <footer class="border-t border-white/10 bg-[#0c0c0d]">
     <div class="mx-auto flex max-w-[1400px] flex-col gap-8 px-6 py-16 md:flex-row md:items-center md:justify-between md:px-10">
       <div>
@@ -191,6 +194,8 @@
 </div>
 <!-- Shared vanilla script: runs the mobile menu toggle and nav highlighting. -->
 <script src="/assets/site.js"></script>
+<!-- Fills the photo carousel. defer = download alongside the page, run once the HTML is fully read. -->
+<script src="/assets/instagram.js" defer></script>
 
 <!-- Structured data (JSON-LD): machine-readable facts about the business and
      this page's FAQ content, in a vocabulary called schema.org. Search engines

@@ -13,6 +13,15 @@
   // JPEG (about 900px on its long side) in /images/shop/ and add a line here.
   // alt describes the photo for screen readers.
   var SHOP_PHOTOS = [
+    { src: '/images/shop/shop-19.jpg', alt: 'Grey 911 Carrera in Martini racing stripes with gold wheels, parked under the Porsche crest on the shop wall' },
+    { src: '/images/shop/shop-20.jpg', alt: 'Black 911 GT3 with bronze wheels and race number 14, parked below a painting of a Porsche race car' },
+    { src: '/images/shop/shop-21.jpg', alt: 'Black 911 GT3 raised on a blue two post lift with its front trunk open' },
+    { src: '/images/shop/shop-22.jpg', alt: 'Overhead view of a silver 911 Cabriolet, a black 911 and a black 911 GT3 between two blue lifts' },
+    { src: '/images/shop/shop-23.jpg', alt: 'Dark blue Cayenne raised on a lift with its hood open, in front of the lit hexagon lights on the shop wall' },
+    { src: '/images/shop/shop-24.jpg', alt: 'Green 911 Carrera raised on a blue two post lift' },
+    { src: '/images/shop/shop-25.jpg', alt: 'Rear of a blue 911 on a lift with the bumper removed, showing the engine and exhaust' },
+    { src: '/images/shop/shop-26.jpg', alt: 'Purple 911 GT3 RS with its front trunk open beside a blue lift' },
+    { src: '/images/shop/shop-27.jpg', alt: 'Martini striped 911 Carrera with gold wheels raised on a blue two post lift' },
     { src: '/images/shop/shop-17.jpg', alt: 'Overhead view of a red 911 Carrera and a red 737 race car between two blue lifts in the shop' },
     { src: '/images/shop/shop-9.jpg', alt: 'Grey 911 Carrera with Carrera side script raised on a blue two post lift' },
     { src: '/images/shop/shop-10.jpg', alt: 'Black 911 Cabriolet in the front bay, with a grey 911 raised on a lift behind it' },
